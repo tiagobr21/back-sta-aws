@@ -227,30 +227,31 @@ router.delete('/delete/:id',(req,res)=>{
 
 router.put('/update/:id',(req,res)=>{
     let id = req.params.id;
-    let query = ('update from escala_coroinha where id=?');
-    connection.query(query,[id],(err,results)=>{
-      if(!err){
-          res.status(404).json({message:'id não encontrado'});
+    let body = req.body;
+    let query = ("update escala_coroinha set missa = ?,data = ?,mes = ?,acolito1 = ?,acolito2 = ?,acolito3 = ?,coroinha1 = ?,coroinha2 = ?,coroinha3 = ?,coroinha4 = ?,coroinha5 = ? where id = ?");
+    connection.query(query,[body.missa,body.data,body.mes,body.acolito1,body.acolito2,body.acolito3,body.coroinha1,body.coroinha2,body.coroinha3,body.coroinha4,body.coroinha5,id],(err,results)=>{
+      if(!err){          
+          return res.status(200).json({message:'Escala Alterada com sucesso'});
       }else{
           res.status(500).json(err);
       }
-      
-      return res.status(200).json({message:'Escala Alterada com sucesso'});
+
+      res.status(404).json({message:'id não encontrado'});
   });
   });
           
-  router.get('/getSingleData',(req,res)=>{
-    let id = req.body;
-    let query = ('select missa,data,dia,hora,comunidade,acolito1,acolito2,acolito3,coroinha1,coroinha2,coroinha3,coroinha4,coroinha5 from escala_coroinha where id=?');
-    connection.query(query,(err,results)=>{
+  router.get('/getSingleData/:id',(req,res)=>{
+    let id = req.params.id;
+    let query = ('select *from escala_coroinha where id=?');
+    connection.query(query,[id],(err,results)=>{
       if(!err){
-          if(results.affectedRows==0){
-              res.status(404).json({message:'id não encontrado'});
-          }
-          return res.status(200).json({message:'Escala deletada'});
-      }else{
-          res.status(500).json(err);
-      }
+        if(results.affectedRows==0){
+            res.status(404).json({message:'id não encontrado'});
+        }
+        return res.status(200).json(results);
+    }else{
+        res.status(500).json(err);
+    }
   });
   });
 
