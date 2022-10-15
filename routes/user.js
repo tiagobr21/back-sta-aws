@@ -40,7 +40,7 @@ router.post('/login',(req,res)=>{
 
     const user = req.body;
 
-    let query = "select email,password,status,role from user where email=?"
+    let query = "select email,password,status,role from user where email = ?"
 
     connection.query(query, [user.email] , (err,results)=>{
         if(!err){
@@ -51,7 +51,7 @@ router.post('/login',(req,res)=>{
 
             }else if(results[0].status === 'false'){
 
-                return res.status(401).json({message:"Espere o Administrador Aprovar"});
+                return res.status(404).json({message:"Espere o Administrador Aprovar"});
 
             }else if(results[0].password == user.password){
 
@@ -82,7 +82,7 @@ router.post('/forgotpassword',(req,res)=>{
     let query = "select email,password from user where email=?";
     connection.query(query,[user.email],(err,results)=>{
         if(!err){
-            if(results.length <= 0){
+             if(results.length <= 0){
                return res.status(200).json({message: "Recuperação de senha enviado com sucesso para seu email !!!"});
             }else{
                 var mailOptions = {

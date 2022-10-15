@@ -18,6 +18,7 @@ router.post('/create',(req,res)=>{
                 (err,results)=>{
                   if(!err){
                     res.status(200).json({message:'Escala Cadastrada com sucesso'});
+                    res.status(200).json(results)
                   }else{
                     res.status(500).json(err);
                   }
@@ -228,8 +229,8 @@ router.delete('/delete/:id',(req,res)=>{
 router.put('/update/:id',(req,res)=>{
     let id = req.params.id;
     let body = req.body;
-    let query = ("update escala_coroinha set missa = ?,data = ?,mes = ?,acolito1 = ?,acolito2 = ?,acolito3 = ?,coroinha1 = ?,coroinha2 = ?,coroinha3 = ?,coroinha4 = ?,coroinha5 = ? where id = ?");
-    connection.query(query,[body.missa,body.data,body.mes,body.acolito1,body.acolito2,body.acolito3,body.coroinha1,body.coroinha2,body.coroinha3,body.coroinha4,body.coroinha5,id],(err,results)=>{
+    let query = ("update escala_coroinha set missa = ?,data = ?,mes = ?, dia= ? ,hora = ?,comunidade = ?,acolito1 = ?,acolito2 = ?,acolito3 = ?,coroinha1 = ?,coroinha2 = ?,coroinha3 = ?,coroinha4 = ?,coroinha5 = ? where id = ?");
+    connection.query(query,[body.missa,body.data,body.mes,body.dia,body.hora,body.comunidade,body.acolito1,body.acolito2,body.acolito3,body.coroinha1,body.coroinha2,body.coroinha3,body.coroinha4,body.coroinha5,id],(err,results)=>{
       if(!err){          
           return res.status(200).json({message:'Escala Alterada com sucesso'});
       }else{
