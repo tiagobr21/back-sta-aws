@@ -17,6 +17,7 @@
     "html2pdf.js": "^0.10.1",
     "jsonwebtoken": "^8.5.1",
     "jspdf": "^2.5.1",
+    "jwt-decoder": "^0.0.0",
     "mysql": "^2.18.1",
     "nodemailer": "^6.7.5"
   },
