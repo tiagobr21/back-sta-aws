@@ -258,7 +258,7 @@ router.put('/update/:id',(req,res)=>{
 
 router.get("/select_coroinha",(req,res)=>{
     let coroinhas = req.body
-    let query="select nome from coroinhas order by nome"
+    let query="select id,nome from coroinhas order by nome"
     connection.query(query,(err,results)=>{
       if(!err){
         res.status(200).json(results);
@@ -270,7 +270,7 @@ router.get("/select_coroinha",(req,res)=>{
 
   router.get("/select_acolito",(req,res)=>{
     let acolitos = req.body
-    let query="select nome from acolitos order by nome"
+    let query="select id,nome from acolitos order by nome"
     connection.query(query,(err,results)=>{
       if(!err){
         res.status(200).json(results);
@@ -305,57 +305,116 @@ router.get("/select_coroinha",(req,res)=>{
   });
 
   
-  // funcões do administrador
+// funcões do administrador
 
-router.post('/create_coroinha',(req,res)=>{
-  let body = req.body
-  let query_consulta = ('select id,nome from coroinhas');
-  connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
-    if(!err){
-     
-          let query = ('insert into coroinhas values (default,?)');
-          connection.query(query,[body.nome],(err,result)=>{
-            if(!err){
-              res.status(200).json({message:'Coroinha criado com sucesso'});
-            }else{
-              res.status(500).json(err);
-            }
-          })
-     
-    }else{
-      res.status(500).json(err);
-    }
-  }); 
-});
+   //coroinhas
 
-  
-router.put('/update_coroinha/:id',(req,res)=>{
-  let id = req.params.id
-  let body = req.body;
-  let query = ('update coroinhas set nome = ? where id = ?');
-  connection.query(query,[body.nome,id],(err,result)=>{
-    if(!err){
-      res.status(200).json({message:'Coroinha atualizado com sucesso!!!'});
-    }else{
-      res.status(500).json(err);
-    }
-    res.status(400).json({message:'id não encontrado'});
-  }); 
-});
+    router.post('/create_coroinha',(req,res)=>{
+      let body = req.body
+      let query_consulta = ('select id,nome from coroinhas');
+      connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
+        if(!err){
+        
+              let query = ('insert into coroinhas values (default,?)');
+              connection.query(query,[body.nome],(err,result)=>{
+                if(!err){
+                  res.status(200).json({message:'Coroinha criado com sucesso'});
+                }else{
+                  res.status(500).json(err);
+                }
+              });
+        
+        }else{
+          res.status(500).json(err);
+        }
+      }); 
+    });
 
-router.delete('/delete_coroinha/:id',(req,res)=>{
-  let id = req.params.id
-  let body = req.body;
-  let query = ('delete from coroinhas where id = ?');
-  connection.query(query,[id],(err,result)=>{
-    if(!err){
-      res.status(200).json({message:'Coroinha deletado com sucesso!!!'});
-    }else{
-      res.status(500).json(err);
-    }
-    res.status(400).json({message:'id não encontrado'});
-  }); 
-});
+      
+    router.put('/update_coroinha/:id',(req,res)=>{
+      let id = req.params.id
+      let body = req.body;
+      let query = ("update coroinhas set nome=? where id=?");
+      connection.query(query,[body.nome,id],(err,results)=>{
+        if(!err){
+          return res.status(200).json({message:'Coroinha atualizado com sucesso!!!'});
+        }else{
+          res.status(500).json(err);
+        }
+        res.status(400).json({message:'id não encontrado'});
+      }); 
+    });
+
+
+    router.delete('/delete_coroinha/:id',(req,res)=>{
+      let id = req.params.id
+      let query = ('delete from coroinhas where id=?');
+      connection.query(query,[id],(err,results)=>{
+      if(!err){
+          if(results.affectedRows==0){
+              res.status(404).json({message:'id não encontrado'});
+          }
+          return res.status(200).json({message:'Escala deletada'});
+      }else{
+          res.status(500).json(err);
+      }
+    });
+    });
+    
+    //acolitos 
+       
+    router.post('/create_acolito',(req,res)=>{
+      let body = req.body
+      let query_consulta = ('select id,nome from acolitos');
+      connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
+        if(!err){
+        
+              let query = ('insert into acolitos values (default,?)');
+              connection.query(query,[body.nome],(err,result)=>{
+                if(!err){
+                  res.status(200).json({message:'acolito criado com sucesso'});
+                }else{
+                  res.status(500).json(err);
+                }
+              });
+        
+        }else{
+          res.status(500).json(err);
+        }
+      }); 
+    });
+
+      
+    router.put('/update_acolito/:id',(req,res)=>{
+      let id = req.params.id
+      let body = req.body;
+      let query = ("update acolitos set nome=? where id=?");
+      connection.query(query,[body.nome,id],(err,results)=>{
+        if(!err){
+          return res.status(200).json({message:'acolito atualizado com sucesso!!!'});
+        }else{
+          res.status(500).json(err);
+        }
+        res.status(400).json({message:'id não encontrado'});
+      }); 
+    });
+
+
+    router.delete('/delete_acolito/:id',(req,res)=>{
+      let id = req.params.id
+      let query = ('delete from acolitos where id=?');
+      connection.query(query,[id],(err,results)=>{
+      if(!err){
+          if(results.affectedRows==0){
+              res.status(404).json({message:'id não encontrado'});
+          }
+          return res.status(200).json({message:'acolito deletado com sucesso !!!'});
+      }else{
+          res.status(500).json(err);
+      }
+    });
+    });
+    
   
 
 module.exports = router;
