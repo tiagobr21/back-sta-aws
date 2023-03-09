@@ -6,6 +6,10 @@ const coroinhaRoute = require('./routes/escala_coroinha');
 const ministroRoute = require('./routes/escala_ministro')
 const app = express();
 
+app.get("/",(req,res)=>{
+    return res.status(200).json("WELCOME");
+})
+
 app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
