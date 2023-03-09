@@ -210,7 +210,7 @@ router.get('/read',(req,res)=>{
   });
 });
 
-router.delete('/delete/:id',(req,res)=>{
+router.delete('/delete/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
   let id = req.params.id;
   let query = ('delete from escala_coroinha where id=?');
   connection.query(query,[id],(err,results)=>{
@@ -225,7 +225,7 @@ router.delete('/delete/:id',(req,res)=>{
 });
 });
 
-router.put('/update/:id',(req,res)=>{
+router.put('/update/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
     let id = req.params.id;
     let body = req.body;
     let query = ("update escala_coroinha set missa = ?,data = ?,mes = ?,ano = ?, dia= ? ,hora = ?,comunidade = ?,acolito1 = ?,acolito2 = ?,acolito3 = ?,coroinha1 = ?,coroinha2 = ?,coroinha3 = ?,coroinha4 = ?,coroinha5 = ? where id = ?");
@@ -309,7 +309,7 @@ router.get("/select_coroinha",(req,res)=>{
 
    //coroinhas
 
-    router.post('/create_coroinha',(req,res)=>{
+    router.post('/create_coroinha',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let body = req.body
       let query_consulta = ('select id,nome from coroinhas');
       connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
@@ -331,7 +331,7 @@ router.get("/select_coroinha",(req,res)=>{
     });
 
       
-    router.put('/update_coroinha/:id',(req,res)=>{
+    router.put('/update_coroinha/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let id = req.params.id
       let body = req.body;
       let query = ("update coroinhas set nome=? where id=?");
@@ -346,7 +346,7 @@ router.get("/select_coroinha",(req,res)=>{
     });
 
 
-    router.delete('/delete_coroinha/:id',(req,res)=>{
+    router.delete('/delete_coroinha/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let id = req.params.id
       let query = ('delete from coroinhas where id=?');
       connection.query(query,[id],(err,results)=>{
@@ -363,7 +363,7 @@ router.get("/select_coroinha",(req,res)=>{
     
     //acolitos 
        
-    router.post('/create_acolito',(req,res)=>{
+    router.post('/create_acolito',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let body = req.body
       let query_consulta = ('select id,nome from acolitos');
       connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
@@ -385,7 +385,7 @@ router.get("/select_coroinha",(req,res)=>{
     });
 
       
-    router.put('/update_acolito/:id',(req,res)=>{
+    router.put('/update_acolito/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let id = req.params.id
       let body = req.body;
       let query = ("update acolitos set nome=? where id=?");
@@ -400,7 +400,7 @@ router.get("/select_coroinha",(req,res)=>{
     });
 
 
-    router.delete('/delete_acolito/:id',(req,res)=>{
+    router.delete('/delete_acolito/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
       let id = req.params.id
       let query = ('delete from acolitos where id=?');
       connection.query(query,[id],(err,results)=>{

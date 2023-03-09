@@ -1,7 +1,8 @@
     require('dotenv').config()
 
     function checkRole(req,res,next){
-        if(res.locals.role == process.env.USER)
+        console.log(res.locals.role);
+        if(res.locals.role == 'user')
             res.sendStatus(401)
         else
             next()

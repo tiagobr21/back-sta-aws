@@ -42,9 +42,10 @@ router.post('/login',(req,res)=>{
     let query = "select email,password,status,role from user where email = ?"
 
     connection.query(query, [user.email] , (err,results)=>{
+
         if(!err){
 
-            if(results.length <=0 || results[0].password !=user.password){
+            if(results.length <=0 || results[0].password != user.password){
                 return res.status(401).json({mesagge:"Usuário ou Senha Incorreto"});
 
 
@@ -56,7 +57,7 @@ router.post('/login',(req,res)=>{
 
                 const response = {email: results[0].email, role: results[0].role }
                 const accessToken = jwt.sign(response,process.env.ACCESS_TOKEN,{expiresIn:'8h'})
-                res.status(200).json({token: accessToken})
+                res.status(200).json({message:'Usuário logado com sucesso', token: accessToken})
 
             }else{
                 return res.status(400).json({message: "Algo ocorreu errado, tente novamente mais tarde"});
@@ -67,13 +68,34 @@ router.post('/login',(req,res)=>{
     })
 })
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth:{
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
-    }
-})
+
+router.post('/sendemail',(req,res)=>{
+    
+    const transport = nodemailer.createTransport({
+        host:'smtp.office365.com',
+        port: 587,
+        secure: false,
+        auth:{
+            user:'paroquiasantateresinhatest@outlook.com',
+            pass:'Bondade07!'
+        }
+    })
+    var mailOptions = {
+        from: 'Sistema Santa Teresinha <paroquiasantateresinhatest@outlook.com>',
+        to: 'paroquiasantateresinhatest@outlook.com',
+        subject: 'Senha do Sta',
+        html: '<p> <b> Seu Login da Sta</b> <br> <b>Email:</b>'+'paroquiasantateresinhatest@outlook.com'+'<br> <b>Senha:</b> '+'paroquiasantateresinhatest@outlook.com'+' <br> <a href="http://localhost:4200/"> Clique aqui para Entrar </a>  </p>',
+        text: 'Olá , test'
+      }
+      transport.sendMail(mailOptions,function(error,info){
+          if(error){
+              console.log(error);
+          }else{
+              console.log('Email enviado: '+info.response);
+          }
+      }); 
+});
+
 
 
 router.post('/forgotpassword',(req,res)=>{ 
@@ -81,23 +103,35 @@ router.post('/forgotpassword',(req,res)=>{
     let query = "select email,password from user where email=?";
     connection.query(query,[user.email],(err,results)=>{
         if(!err){
+            console.log(results);
              if(results.length <= 0){
                return res.status(200).json({message: "Recuperação de senha enviado com sucesso para seu email !!!"});
             }else{
+                const transport = nodemailer.createTransport({
+                    host:'smtp.office365.com',
+                    port: 587,
+                    secure: false,
+                    auth:{
+                        user:'paroquiasantateresinhatest@outlook.com',
+                        pass:'Bondade07!'
+                    }
+                })
                 var mailOptions = {
-                  from: process.env.EMAIL,
+                  from: 'Sistema Santa Teresinha <paroquiasantateresinhatest@outlook.com>',
                   to: results[0].email,
                   subject: 'Senha do Sta',
-                  html: '<p> <b> Seu Login da Sta</b> <br> <b>Email:</b>'+results[0].email+'<br> <b>Senha:</b> '+results[0].password+' <br> <a href="http://localhost:4200/"> Clique aqui para Entrar </a>  </p>'
+                  html: '<p> <b> Seu Login da Sta</b> <br> <b>Email:</b>'+results[0].email+'<br> <b>Senha:</b> '+results[0].password+' <br> <a href="http://localhost:4200/"> Clique aqui para Entrar </a>  </p>',
+                  text: 'Olá , test'
                 }
-                transporter.sendMail(mailOptions,function(error,info){
+                transport.sendMail(mailOptions,function(error,info){
                     if(error){
                         console.log(error);
                     }else{
                         console.log('Email enviado: '+info.response);
+                        res.status(200).json({message: "Recuperação de senha enviado com sucesso para seu email !!!"});
                     }
                 }); 
-                res.status(200).json({message: "Recuperação de senha enviado com sucesso para seu email !!!"});
+                
             }
         }else{
             res.status(500).json(err)
@@ -107,7 +141,7 @@ router.post('/forgotpassword',(req,res)=>{
 
 
 router.get('/get',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
-    let query = "select id,name,email,status,role from user where role = 'user'"
+    let query = "select id,name,email,status,role from user"
     connection.query(query,(err,results)=>{
         if(!err){
            return res.status(200).json(results);

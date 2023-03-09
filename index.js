@@ -5,6 +5,7 @@ const userRoute = require('./routes/user');
 const coroinhaRoute = require('./routes/escala_coroinha');
 const ministroRoute = require('./routes/escala_ministro')
 const app = express();
+
 app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
