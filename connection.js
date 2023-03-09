@@ -18,4 +18,8 @@ connection.connect((err)=>{
    }
 });
 
+setInterval( () => {
+   database.query('SELECT 1');
+}, 5000);
+
 module.exports = connection;
