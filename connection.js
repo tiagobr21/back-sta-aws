@@ -34,7 +34,7 @@ function handleDisconnect() {
      }
    });
 
-   module.exports = connection;
+   module.exports = db_config;
  }
 
  handleDisconnect();
