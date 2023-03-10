@@ -11,8 +11,6 @@ var db_config  = mysql.createConnection({
 });
 
 
-
-let handleKFDisconnect = ()=> {
   let connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                    // the old one cannot be reused.
  
@@ -33,8 +31,8 @@ let handleKFDisconnect = ()=> {
        throw err;                                  // server variable configures this)
      }
    });
- }
+ 
 
-module.exports = handleKFDisconnect;
+module.exports = connection;
 
 
