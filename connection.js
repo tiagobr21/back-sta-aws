@@ -38,4 +38,3 @@ function handleDisconnect() {
 
 module.exports = connection;
 
-handleDisconnect();
