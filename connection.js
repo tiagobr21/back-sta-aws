@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 
 
 
-
+function handleDisconnect() {
   let connection = mysql.createConnection(connection); // Recreate the connection, since
                                                    // the old one cannot be reused.
  
@@ -33,7 +33,7 @@ var connection = mysql.createConnection({
        throw err;                                  // server variable configures this)
      }
    });
- 
+ }
 
 module.exports = connection;
 
