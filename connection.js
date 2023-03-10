@@ -34,10 +34,10 @@ function handleDisconnect() {
      }
    });
 
-   module.exports = db_config;
+
  }
 
- handleDisconnect();
+ module.exports = connection;
 
 
 
