@@ -39,7 +39,7 @@ router.post('/signup',(req,res)=>{
 router.post('/login',(req,res)=>{
 
     const user = req.body;
-    let query = "select email,password,status,role from user where email = ?"
+    let query = "select name,email,password,status,role from user where email = ?"
 
     connection.query(query, [user.email] , (err,results)=>{
 
@@ -57,7 +57,7 @@ router.post('/login',(req,res)=>{
 
                 const response = {email: results[0].email, role: results[0].role }
                 const accessToken = jwt.sign(response,process.env.ACCESS_TOKEN,{expiresIn:'8h'})
-                res.status(200).json({message:'Usuário logado com sucesso', token: accessToken})
+                res.status(200).json({message:'Usuário '+ results[0].name +' logado com sucesso',user: results[0].name, token: accessToken})
 
             }else{
                 return res.status(400).json({message: "Algo ocorreu errado, tente novamente mais tarde"});
