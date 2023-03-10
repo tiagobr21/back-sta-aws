@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    database: process.env.DB_NAME
 });
 
-
+module.exports = connection;
 
 function handleDisconnect() {
   let connection = mysql.createConnection(connection); // Recreate the connection, since
@@ -35,6 +35,6 @@ function handleDisconnect() {
    });
  }
 
-module.exports = connection;
 
+ handleDisconnect();
 
