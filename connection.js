@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 require('dotenv').config();
 
-var connection = mysql.createConnection({
+var db_config  = mysql.createConnection({
    port: process.env.DB_PORT,
    host: process.env.DB_HOST,
    user: process.env.DB_USERNAME,
@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 
 function handleDisconnect() {
-  let connection = mysql.createConnection(connection); // Recreate the connection, since
+  let connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                    // the old one cannot be reused.
  
    connection.connect(function(err) {              // The server is either down
@@ -35,6 +35,8 @@ function handleDisconnect() {
    });
  }
 
- handleDisconnect();
+handleDisconnect();
+
+module.exports = connection;
 
 
