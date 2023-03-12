@@ -140,6 +140,8 @@ router.post('/forgotpassword',(req,res)=>{
 })      
 
 
+
+
 router.get('/get',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
     let query = "select id,name,email,status,role from user"
     connection.query(query,(err,results)=>{
@@ -151,20 +153,40 @@ router.get('/get',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
     })
 })
 
-router.patch('/update',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
+
+router.get('/getbyid/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
+    let id = req.params.id;
+    let query = ('select *from user where id=?');
+    connection.query(query,[id],(err,results)=>{
+      if(!err){
+        if(results.affectedRows==0){
+            res.status(404).json({message:'id não encontrado'});
+        }
+        return res.status(200).json(results);
+    }else{
+        res.status(500).json(err);
+    }
+  });
+  });
+
+router.patch('/updateuser/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
+    let id = req.params.id
     let user = req.body;
-    let query = "update user set status=? where id=?"
-    connection.query(query,[user.status,user.id],(err,results)=>{
+    let query = "update user set name=?, email=? , status=? , role=? where id=?"
+    connection.query(query,[user.name,user.email,user.status,user.role,id],(err,results)=>{
         if(!err){
           if(results.affectedRows == 0){
             return res.status(404).json({message:"O Usuário não existe "});
           }
-          return res.status(200).json({mesagge:"Usuário Autenticado com Sucesso!!!"});
+          return res.status(200).json({message:"Usuário Atualizado com Sucesso!!!"});
         }else{
           return res.status(500).json(err);
         }
     })
-})
+});
+
+
+
 
 router.get('/checkToken',auth.authenticateToken,(req,res)=>{
     return res.status(200).json({message:"true"});
@@ -174,7 +196,7 @@ router.post('/changePassword',auth.authenticateToken,(req,res)=>{
     const user = req.body;
     const email = res.locals.email;
     console.log(email)
-    let query = "select *from user where email=? and password=?";
+    let query = "select * from user where email=? and password=?";
     connection.query(query,[email,user.oldPassword],(err,results)=>{
         if(!err){
            if(results.length <=0){
