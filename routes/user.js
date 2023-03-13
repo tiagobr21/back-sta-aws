@@ -215,7 +215,7 @@ router.post('/forgotpassword',(req,res)=>{
 
 
 router.get('/get',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
-    let query = "select id,name,email,status,role from user"
+    let query = "select id,name,email,password,status,role from user"
     connection.query(query,(err,results)=>{
         if(!err){
            return res.status(200).json(results);
@@ -244,8 +244,8 @@ router.get('/getbyid/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>
 router.patch('/updateuser/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
     let id = req.params.id
     let user = req.body;
-    let query = "update user set name=?, email=? , status=? , role=? where id=?"
-    connection.query(query,[user.name,user.email,user.status,user.role,id],(err,results)=>{
+    let query = "update user set name=?, email=? , password=?, status=? , role=? where id=?"
+    connection.query(query,[user.name,user.email,user.password,user.status,user.role,id],(err,results)=>{
         if(!err){
           if(results.affectedRows == 0){
             return res.status(404).json({message:"O Usuário não existe "});
