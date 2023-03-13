@@ -5,9 +5,49 @@ const jwt = require('jsonwebtoken');
 var auth = require('../services/authentication');
 var checkRole = require('../services/checkRole');
 const nodemailer = require('nodemailer');
-const { query } = require('express');
+const multer = require('multer');
+const multerConfig = require('../config/multer');
 require('dotenv').config();
 
+
+
+router.post("/uploadimage", multer(multerConfig).single("file"),async (req,res)=>{
+    
+    //return res.json(req.file)
+
+
+    const post = {
+        name: req.file.originalname,
+        size: req.file.size,
+        key: req.file.filename,
+        url:""
+    }
+
+    return res.json(post)
+    /* let img_name = file.name;
+    let query = 'update user set image = ? where id = ?'
+    if(!req.files){
+       return res.status(400).json('Nenhum arquivo foi enviado')
+    }
+    if(file.mimetype == "image/jpeg" || file.mimetype == 'image/png' || file.mimetype == 'image/gif'){
+      file.mv('public/images/'+img_name,(err,results)=>{
+         if(err){
+             return res.status(500).json(err);
+         }
+         connection.query(query,[file.name,id],(err,results)=>{
+             if(!err){
+                 res.status(200).json({"message":"imagem enviada com sucesso"})
+             }else{
+                 res.status(500).json(err)
+             }
+         })
+      })
+    }else{
+     res.status(404).json({"message":"O formato não permitido, por favor envie um arquivo '.png','.gif','.jpg'"});
+    } */
+    
+ })
+ 
 
 router.post('/signup',(req,res)=>{
     let user = req.body;
@@ -57,7 +97,7 @@ router.post('/login',(req,res)=>{
 
                 const response = {email: results[0].email, role: results[0].role }
                 const accessToken = jwt.sign(response,process.env.ACCESS_TOKEN,{expiresIn:'8h'})
-                res.status(200).json({message:'Usuário '+ results[0].name +' logado com sucesso',user: results[0].name, token: accessToken})
+                res.status(200).json({message:'Usuário '+ results[0].name +' logado com sucesso',user:results[0].name, role:results[0].role, token: accessToken})
 
             }else{
                 return res.status(400).json({message: "Algo ocorreu errado, tente novamente mais tarde"});
@@ -185,6 +225,20 @@ router.patch('/updateuser/:id',auth.authenticateToken,checkRole.checkRole,(req,r
     })
 });
 
+router.delete("/delete/:id",auth.authenticateToken,checkRole.checkRole,(req,res)=>{
+   let id = req.params.id
+   let query = 'delete from user where id = ?';
+   connection.query(query,[id],(err,results)=>{
+      if(!err){
+        if(results.affectedRows == 0){
+           res.status(404).json({mesagge:'usuário não encontrado'})
+        }
+        res.status(200).json({message:'Usuário deletado com sucesso !!!'})
+      }else{
+        res.status(500).json(err)
+      }
+   })
+})
 
 
 
