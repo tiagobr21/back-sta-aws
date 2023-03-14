@@ -4,6 +4,37 @@ const connection = require('../connection');
 const router = express.Router();
 var auth = require('../services/authentication');
 var checkRole = require('../services/checkRole');
+let fs = require('fs');
+let path = require('path');
+let pdf = require('html-pdf');
+let ejs = require('ejs');
+let uuid = require('uuid');
+
+router.post('/gerarPdf',(req,res)=>{
+  let escala_coroinha = req.body;
+  let escalas = JSON.parse(escala_coroinha.escalas);
+  console.log(escalas)
+
+  ejs.renderFile(path.join(__dirname,'','escala.ejs'),
+  {escalas:escalas,data:escala_coroinha.data,dia:escala_coroinha.dia,
+   hora:escala_coroinha.hora,comunidade:escala_coroinha.comunidade,acolito1:escala_coroinha.acolito1,
+   coroinha1:escala_coroinha.coroinha1},(err,results)=>{
+    
+      if(err){
+        return res.status(500).json("error"+err)
+      }else{
+        pdf.create(results).toFile('pdfs/'+'Escala Coroinha '+escala_coroinha.mes+'.pdf',(err,data)=>{
+            if(err){
+              console.log(err)
+              return res.status(500).json(err)
+            }else{
+              return res.status(200).json({message:'Escala Coroinha'+escala_coroinha.mes+'criada com sucesso !!!'})
+            }
+        })
+      }
+   }) 
+
+})
 
 router.post('/create',(req,res)=>{
   let escala_coroinha = req.body;
