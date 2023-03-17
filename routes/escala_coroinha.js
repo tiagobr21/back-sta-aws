@@ -11,36 +11,56 @@ let ejs = require('ejs');
 let uuid = require('uuid');
 
 router.post('/gerarpdf',(req,res)=>{
+
   let escala_coroinha = req.body;
   let paginas = escala_coroinha.length;
-
-
-
-  if(paginas <= 3){
-    
+  
+  
     if(paginas == 1){
 
         let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
         let pagina2 = undefined
+        let pagina3 = undefined
+        let pagina4 = undefined
+        let pagina5 = undefined
+        let pagina6 = undefined
+        let pagina7 = undefined
+        let pagina8 = undefined
+        let pagina9 = undefined
+        let pagina10 = undefined
         let tipo = escala_coroinha[0].tipo;
         const generateUuid = uuid.v1();
 
 
-        if(pagina1.length <= 8){
+        if(pagina1.length <= 10){
             
             ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
-            {pagina1:pagina1,pagina2:pagina2,tipo:tipo},(err,results)=>{
+            {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
           
                 if(err){
                   return res.status(500).json("error"+err)
                 }else{
+                 
+                  console.log(pdf)
                   pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                       if(err){
                         console.log(err)
                         return res.status(500).json(err)
                       }else{
-                        return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+
+                          return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                       }
+                  })
+
+                  let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                  let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                
+                  connection.query(query,[data],(err,results)=>{
+                    if(!err){
+       
+                    }else{
+                      return res.status(500).json(err)
+                    } 
                   })
                 }
             }) 
@@ -55,17 +75,23 @@ router.post('/gerarpdf',(req,res)=>{
    
       let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
       let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
-  
+      let pagina3 = undefined
+      let pagina4 = undefined
+      let pagina5 = undefined
+      let pagina6 = undefined
+      let pagina7 = undefined
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
       let tipo = escala_coroinha[0].tipo;
       const generateUuid = uuid.v1();
       
-      console.log(pagina1)
-      console.log(pagina2)
   
-       if(pagina1.length <= 8 && pagina2.length <= 8){
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10){
       
           ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
-          {pagina1:pagina1,pagina2:pagina2,tipo:tipo},(err,results)=>{
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
@@ -86,9 +112,352 @@ router.post('/gerarpdf',(req,res)=>{
         }
     }
     
-  }else{
-    res.status(500).json({message:'Quantidade de páginas acima do limite'})
-  }
+    if(paginas == 3){
+      
+   
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = undefined
+      let pagina5 = undefined
+      let pagina6 = undefined
+      let pagina7 = undefined
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+    
+    if(paginas == 4){
+      
+   
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = undefined
+      let pagina6 = undefined
+      let pagina7 = undefined
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+   
+    if(paginas == 5){
+      
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = undefined
+      let pagina7 = undefined
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+    
+    if(paginas == 6){
+      
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = JSON.parse(escala_coroinha[5].pagina6);
+      let pagina7 = undefined
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10   &&  pagina6.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+
+     
+    if(paginas == 7){
+      
+   
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = JSON.parse(escala_coroinha[5].pagina6);
+      let pagina7 = JSON.parse(escala_coroinha[6].pagina7);
+      let pagina8 = undefined
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+
+     
+    if(paginas == 8){
+      
+   
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = JSON.parse(escala_coroinha[5].pagina6);
+      let pagina7 = JSON.parse(escala_coroinha[6].pagina7);
+      let pagina8 = JSON.parse(escala_coroinha[7].pagina8);
+      let pagina9 = undefined
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+
+  
+    if(paginas == 9){
+      
+   
+       
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = JSON.parse(escala_coroinha[5].pagina6);
+      let pagina7 = JSON.parse(escala_coroinha[6].pagina7);
+      let pagina8 = JSON.parse(escala_coroinha[7].pagina8);
+      let pagina9 = JSON.parse(escala_coroinha[8].pagina9);
+      let pagina10 = undefined
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
+        &&  pagina9.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    }
+
+      
+    if(paginas == 10){
+      
+   
+      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
+      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
+      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
+      let pagina4 = JSON.parse(escala_coroinha[3].pagina4);
+      let pagina5 = JSON.parse(escala_coroinha[4].pagina5);
+      let pagina6 = JSON.parse(escala_coroinha[5].pagina6);
+      let pagina7 = JSON.parse(escala_coroinha[6].pagina7);
+      let pagina8 = JSON.parse(escala_coroinha[7].pagina8);
+      let pagina9 = JSON.parse(escala_coroinha[8].pagina9);
+      let pagina10 = JSON.parse(escala_coroinha[9].pagina10);
+      let tipo = escala_coroinha[0].tipo;
+      const generateUuid = uuid.v1();
+      
+  
+  
+       if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
+        &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
+        &&  pagina9.length <= 10 &&  pagina10.length <= 10){
+      
+          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
+        
+              if(err){
+                return res.status(500).json("error"+err)
+              }else{
+                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                    if(err){
+                      console.log(err)
+                      return res.status(500).json(err)
+                    }else{
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
+                    }
+                })
+              }
+          })
+
+        }else{
+          res.status(500).json({message:'Quantidade de escalas acima do limite'})
+        }
+    } 
+    
 
 
 

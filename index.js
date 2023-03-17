@@ -19,6 +19,6 @@ app.use('/user',userRoute);
 app.use('/escala_coroinha',coroinhaRoute);
 app.use('/escala_ministro',ministroRoute);
 app.use('/files',express.static(path.resolve(__dirname,".","tmp","uploads")))
-
+app.use('/escala-coroinha-pdf',express.static(path.resolve(__dirname,".","pdfs","escala-coroinha-pdf")))
 
 module.exports = app;

@@ -19,7 +19,7 @@ router.patch("/uploadimage/:id", multer(multerConfig).single("file"),async (req,
      let filename = req.file.filename;
      let query = 'update user set image = ?, filename = ? where id = ? ';
      let id = req.params.id;
-     const image = `https://back-sta.herokuapp.com/files/${filename}`;
+     const image = `http://localhost:3000/files/${filename}`;
     
      connection.query(query,[image,filename,id],(err,results)=>{
         if(!err){
@@ -180,12 +180,12 @@ router.post('/forgotpassword',(req,res)=>{
                return res.status(200).json({message: "Recuperação de senha enviado com sucesso para seu email !!!"});
             }else{
                 const transport = nodemailer.createTransport({
-                    host:'smtp.office365.com',
-                    port: 587,
-                    secure: false,
+                    host:'smtp.gmail.com',
+                    port: 465,
+                    secure: true,
                     auth:{
-                        user:'paroquiasantateresinhatest@outlook.com',
-                        pass:'Bondade07!'
+                        user:'santateresinhamanaus@gmail.com ',
+                        pass:''
                     }
                 })
                 var mailOptions = {

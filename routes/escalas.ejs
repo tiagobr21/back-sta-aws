@@ -10,7 +10,7 @@
           }
 
            #imgcabecalho{
-               background-image: url('https://back-sta.herokuapp.com/files/logo.png');
+               background-image: url('http://localhost:3000/files/logo.png');
                background-repeat: no-repeat;
                width: 100%;
                height: 100%;
@@ -24,6 +24,7 @@
                 border-collapse: collapse;
                 width: 100%;
                 margin-top:80px;
+                font-size: 12px;
             }
         
             td,th{
@@ -49,9 +50,9 @@
                 <thead class="head">
                   <tr>
                     <th scope="col">Data</th>
-                    <th scope="col">Dia</th>
                     <th scope="col">Hora</th>
-                    <th scope="col">Comunidade</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Local</th>
                     <th scope="col">Acolitos</th>
                     <th scope="col">Coroinhas</th>
                   </tr>
@@ -62,8 +63,8 @@
                       <% pagina1.forEach(p1 =>{ %>
                     <tr>
                         <td><%= p1.data %></td>
-                        <td><%= p1.dia %></td>
                         <td><%= p1.hora %></td>
+                        <td><%= p1.dia %></td>
                         <td><%= p1.comunidade %></td>
                         <td><%= p1.acolito1 %><br>
                             <%= p1.acolito2 %><br>
@@ -101,9 +102,9 @@
               <thead class="head">
                 <tr>
                   <th scope="col">Data</th>
-                  <th scope="col">Dia</th>
                   <th scope="col">Hora</th>
-                  <th scope="col">Comunidade</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
                   <th scope="col">Acolitos</th>
                   <th scope="col">Coroinhas</th>
                 </tr>
@@ -114,8 +115,8 @@
                     <% pagina2.forEach(p2 =>{ %>
                   <tr>
                       <td><%= p2.data %></td>
-                      <td><%= p2.dia %></td>
                       <td><%= p2.hora %></td>
+                      <td><%= p2.dia %></td>
                       <td><%= p2.comunidade %></td>
                       <td><%= p2.acolito1 %><br>
                           <%= p2.acolito2 %><br>
@@ -126,6 +127,438 @@
                           <%= p2.coroinha3 %><br>
                           <%= p2.coroinha4 %><br>
                           <%= p2.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina3 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina3.forEach(p3 =>{ %>
+                  <tr>
+                      <td><%= p3.data %></td>
+                      <td><%= p3.hora %></td>
+                      <td><%= p3.dia %></td>
+                      <td><%= p3.comunidade %></td>
+                      <td><%= p3.acolito1 %><br>
+                          <%= p3.acolito2 %><br>
+                          <%= p3.acolito3 %><br>
+                      </td>
+                      <td><%= p3.coroinha1 %><br>
+                          <%= p3.coroinha2 %><br>
+                          <%= p3.coroinha3 %><br>
+                          <%= p3.coroinha4 %><br>
+                          <%= p3.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina4 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina4.forEach(p4 =>{ %>
+                  <tr>
+                      <td><%= p4.data %></td>
+                      <td><%= p4.hora %></td>
+                      <td><%= p4.dia %></td>
+                      <td><%= p4.comunidade %></td>
+                      <td><%= p4.acolito1 %><br>
+                          <%= p4.acolito2 %><br>
+                          <%= p4.acolito3 %><br>
+                      </td>
+                      <td><%= p4.coroinha1 %><br>
+                          <%= p4.coroinha2 %><br>
+                          <%= p4.coroinha3 %><br>
+                          <%= p4.coroinha4 %><br>
+                          <%= p4.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina5 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina5.forEach(p5 =>{ %>
+                  <tr>
+                      <td><%= p5.data %></td>
+                      <td><%= p5.hora %></td>
+                      <td><%= p5.dia %></td>
+                      <td><%= p5.comunidade %></td>
+                      <td><%= p5.acolito1 %><br>
+                          <%= p5.acolito2 %><br>
+                          <%= p5.acolito3 %><br>
+                      </td>
+                      <td><%= p5.coroinha1 %><br>
+                          <%= p5.coroinha2 %><br>
+                          <%= p5.coroinha3 %><br>
+                          <%= p5.coroinha4 %><br>
+                          <%= p5.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina6 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina6.forEach(p6 =>{ %>
+                  <tr>
+                      <td><%= p6.data %></td>
+                      <td><%= p6.hora %></td>
+                      <td><%= p6.dia %></td>
+                      <td><%= p6.comunidade %></td>
+                      <td><%= p6.acolito1 %><br>
+                          <%= p6.acolito2 %><br>
+                          <%= p6.acolito3 %><br>
+                      </td>
+                      <td><%= p6.coroinha1 %><br>
+                          <%= p6.coroinha2 %><br>
+                          <%= p6.coroinha3 %><br>
+                          <%= p6.coroinha4 %><br>
+                          <%= p6.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina7 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina7.forEach(p7 =>{ %>
+                  <tr>
+                      <td><%= p7.data %></td>
+                      <td><%= p7.hora %></td>
+                      <td><%= p7.dia %></td>
+                      <td><%= p7.comunidade %></td>
+                      <td><%= p7.acolito1 %><br>
+                          <%= p7.acolito2 %><br>
+                          <%= p7.acolito3 %><br>
+                      </td>
+                      <td><%= p7.coroinha1 %><br>
+                          <%= p7.coroinha2 %><br>
+                          <%= p7.coroinha3 %><br>
+                          <%= p7.coroinha4 %><br>
+                          <%= p7.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina8 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina8.forEach(p8 =>{ %>
+                  <tr>
+                      <td><%= p8.data %></td>
+                      <td><%= p8.hora %></td>
+                      <td><%= p8.dia %></td>
+                      <td><%= p8.comunidade %></td>
+                      <td><%= p8.acolito1 %><br>
+                          <%= p8.acolito2 %><br>
+                          <%= p8.acolito3 %><br>
+                      </td>
+                      <td><%= p8.coroinha1 %><br>
+                          <%= p8.coroinha2 %><br>
+                          <%= p8.coroinha3 %><br>
+                          <%= p8.coroinha4 %><br>
+                          <%= p8.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina9 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina9.forEach(p9 =>{ %>
+                  <tr>
+                      <td><%= p9.data %></td>
+                      <td><%= p9.hora %></td>
+                      <td><%= p9.dia %></td>
+                      <td><%= p9.comunidade %></td>
+                      <td><%= p9.acolito1 %><br>
+                          <%= p9.acolito2 %><br>
+                          <%= p9.acolito3 %><br>
+                      </td>
+                      <td><%= p9.coroinha1 %><br>
+                          <%= p9.coroinha2 %><br>
+                          <%= p9.coroinha3 %><br>
+                          <%= p9.coroinha4 %><br>
+                          <%= p9.coroinha5 %><br>
+                      </td>
+                    
+        
+                  </tr>
+
+                  <% }) %>
+            
+              </tbody>
+            </table>
+
+            <% } %>
+
+            <br><br>
+
+            <% if(pagina10 != undefined){ %>
+
+              
+              <div id="cabecalho">
+                <div id="imgcabecalho"></div>
+                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              </div>
+
+            <table  class="table table-bordered" class="tabela-1" >
+            
+              <div id="imgpage3"> </div>
+
+              <thead class="head">
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Local</th>
+                  <th scope="col">Acolitos</th>
+                  <th scope="col">Coroinhas</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                    <% pagina10.forEach(p10 =>{ %>
+                  <tr>
+                      <td><%= p10.data %></td>
+                      <td><%= p10.hora %></td>
+                      <td><%= p10.dia %></td>
+                      <td><%= p10.comunidade %></td>
+                      <td><%= p10.acolito1 %><br>
+                          <%= p10.acolito2 %><br>
+                          <%= p10.acolito3 %><br>
+                      </td>
+                      <td><%= p10.coroinha1 %><br>
+                          <%= p10.coroinha2 %><br>
+                          <%= p10.coroinha3 %><br>
+                          <%= p10.coroinha4 %><br>
+                          <%= p10.coroinha5 %><br>
                       </td>
                     
         
