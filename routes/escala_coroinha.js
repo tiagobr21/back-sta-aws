@@ -15,22 +15,21 @@ router.post('/gerarpdf',(req,res)=>{
   let paginas = escala_coroinha.length;
 
 
+
   if(paginas <= 3){
     
     if(paginas == 1){
 
         let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
         let pagina2 = undefined
-        let pagina3 = undefined
         let tipo = escala_coroinha[0].tipo;
         const generateUuid = uuid.v1();
 
-     
 
         if(pagina1.length <= 8){
             
             ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
-            {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,tipo:tipo},(err,results)=>{
+            {pagina1:pagina1,pagina2:pagina2,tipo:tipo},(err,results)=>{
           
                 if(err){
                   return res.status(500).json("error"+err)
@@ -40,7 +39,7 @@ router.post('/gerarpdf',(req,res)=>{
                         console.log(err)
                         return res.status(500).json(err)
                       }else{
-                        return res.status(200).json({message:'escala-coroinha-'+generateUuid+' criada com sucesso !!!'})
+                        return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                       }
                   })
                 }
@@ -56,15 +55,17 @@ router.post('/gerarpdf',(req,res)=>{
    
       let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
       let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
-      let pagina3 = undefined
+  
       let tipo = escala_coroinha[0].tipo;
       const generateUuid = uuid.v1();
       
+      console.log(pagina1)
+      console.log(pagina2)
   
        if(pagina1.length <= 8 && pagina2.length <= 8){
       
           ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
-          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,tipo:tipo},(err,results)=>{
+          {pagina1:pagina1,pagina2:pagina2,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
@@ -74,7 +75,7 @@ router.post('/gerarpdf',(req,res)=>{
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
-                      return res.status(200).json({message:'escala-coroinha-'+generateUuid+' criada com sucesso !!!'})
+                      return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
                 })
               }
@@ -83,39 +84,6 @@ router.post('/gerarpdf',(req,res)=>{
         }else{
           res.status(500).json({message:'Quantidade de escalas acima do limite'})
         }
-    }
-
-    if(paginas == 3){
-      
-   
-      let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
-      let pagina2 = JSON.parse(escala_coroinha[1].pagina2);
-      let pagina3 = JSON.parse(escala_coroinha[2].pagina3);
-      let tipo = escala_coroinha[0].tipo;
-      const generateUuid = uuid.v1();
-      
-      if(pagina1.length <= 8 && pagina2.length <= 8 && pagina3.length <= 8){
-       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
-          {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,tipo:tipo},(err,results)=>{
-        
-              if(err){
-                return res.status(500).json("error"+err)
-              }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
-                    if(err){
-                      console.log(err)
-                      return res.status(500).json(err)
-                    }else{
-                      return res.status(200).json({message:'escala-coroinha-'+generateUuid+' criada com sucesso !!!'})
-                    }
-                })
-              }
-          }) 
-
-      }else{
-        res.status(500).json({message:'Quantidade de escalas acima do limite'})
-      }
     }
     
   }else{

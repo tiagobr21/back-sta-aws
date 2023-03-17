@@ -1,47 +1,7 @@
 <html>
     <head>
         <style>
-/*        #imgpage1{
-            background-image: url('http://localhost:3000/files/cd530d29cf0202e4096b50a2ec9fa552-Santa-Teresinha.jpg');
-            background-repeat: no-repeat;
-            position: absolute;
-            left: 31%;
-            margin: auto 0 ;
-            top:20%;
-            align-items: center;
-            justify-content: center;
-            width: 120%;
-            height: 100%;
-            opacity: 0.2;
-    
-           }
-           #imgpage2{
-            background-image: url('http://localhost:3000/files/cd530d29cf0202e4096b50a2ec9fa552-Santa-Teresinha.jpg');
-            background-repeat: no-repeat;
-            position: absolute;
-            left: 31%;
-            margin: auto 0 ;
-            top:65%;
-            justify-content: center;
-            align-items: center;
-            width: 120%;
-            height: 100%;
-            opacity: 0.2;
-           }
 
-           #imgpage3{
-            background-image: url('http://localhost:3000/files/cd530d29cf0202e4096b50a2ec9fa552-Santa-Teresinha.jpg');
-            background-repeat: no-repeat;
-            position: absolute;
-            left: 31%;
-            top:50%;
-            margin: auto 0;
-            align-items: center;
-            justify-content: center;
-            width: 120%;
-            height: 100%;
-            opacity: 0.2;
-           } */
           #cabecalho{
             margin: auto 0 ;
             align-items: center;
@@ -50,7 +10,7 @@
           }
 
            #imgcabecalho{
-               background-image: url('http://localhost:3000/files/logo.png');
+               background-image: url('https://back-sta.herokuapp.com/files/logo.png');
                background-repeat: no-repeat;
                width: 100%;
                height: 100%;
@@ -178,58 +138,5 @@
 
             <% } %>
 
-            <br><br>
-
-            <% if(pagina3 != undefined){ %>
-
-              
-              <div id="cabecalho">
-                <div id="imgcabecalho"></div>
-                <h3 style="text-align: center;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
-              </div>
-
-            <table  class="table table-bordered" class="tabela-1" >
-            
-              <div id="imgpage3"> </div>
-
-              <thead class="head">
-                <tr>
-                  <th scope="col">Data</th>
-                  <th scope="col">Dia</th>
-                  <th scope="col">Hora</th>
-                  <th scope="col">Comunidade</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-              <% pagina3.forEach(p3 =>{ %>
-                  <tr>
-                      <td><%= p3.data %></td>
-                      <td><%= p3.dia %></td>
-                      <td><%= p3.hora %></td>
-                      <td><%= p3.comunidade %></td>
-                      <td><%= p3.acolito1 %><br>
-                          <%= p3.acolito2 %><br>
-                          <%= p3.acolito3 %><br>
-                      </td>
-                      <td><%= p3.coroinha1 %><br>
-                          <%= p3.coroinha2 %><br>
-                          <%= p3.coroinha3 %><br>
-                          <%= p3.coroinha4 %><br>
-                          <%= p3.coroinha5 %><br>
-                      </td>
-                    
-        
-                  </tr>
-
-                  <% }) %>
-            
-              </tbody>
-            </table>
-             
-            <% } %>
     </body>
 </html>
