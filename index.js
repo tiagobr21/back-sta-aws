@@ -5,7 +5,8 @@ const userRoute = require('./routes/user');
 const coroinhaRoute = require('./routes/escala_coroinha');
 const ministroRoute = require('./routes/escala_ministro')
 const app = express();
-const path = require("path")
+const path = require("path");
+
 
 
 app.get("/",(req,res)=>{
@@ -19,6 +20,6 @@ app.use('/user',userRoute);
 app.use('/escala_coroinha',coroinhaRoute);
 app.use('/escala_ministro',ministroRoute);
 app.use('/files',express.static(path.resolve(__dirname,".","tmp","uploads")))
-app.use('/escala-coroinha-pdf',express.static(path.resolve(__dirname,".","pdfs","escala-coroinha-pdf")))
+app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escola-coroinha-pdf")))
 
 module.exports = app;

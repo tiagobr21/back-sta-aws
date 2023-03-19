@@ -42,7 +42,7 @@ router.post('/gerarpdf',(req,res)=>{
                 }else{
                  
                   console.log(pdf)
-                  pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                  pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                       if(err){
                         console.log(err)
                         return res.status(500).json(err)
@@ -96,13 +96,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -138,13 +149,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -179,13 +201,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -221,13 +254,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -263,13 +307,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -307,13 +362,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -351,13 +417,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -397,13 +474,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -442,13 +530,24 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results).toFile('pdfs/escola-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
                     }
+                })
+                
+                let data = 'escala-coroinha-'+generateUuid+'.pdf';
+                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+              
+                connection.query(query,[data],(err,results)=>{
+                  if(!err){
+     
+                  }else{
+                    return res.status(500).json(err)
+                  } 
                 })
               }
           })
@@ -457,12 +556,56 @@ router.post('/gerarpdf',(req,res)=>{
           res.status(500).json({message:'Quantidade de escalas acima do limite'})
         }
     } 
-    
-
-
-
   
+});
+
+router.get('/getpdf',(req,res)=>{
+  let pdf = req.body
+  let query = 'select id,escala_coroinha from pdf order by id DESC';
+
+  connection.query(query,[pdf],(err,results)=>{
+    if(!err){
+      res.status(200).json(results)
+    }else{
+      res.status(500).json(err)
+    }
+  })
 })
+
+router.delete("/deletepdf/:id",(req,res)=>{
+  
+  let id = req.params.id;
+  let body = req.body
+  let query = 'delete from pdf where id = ?';
+  namepdf = 'select escala_coroinha from pdf where id = ?'
+
+     connection.query(namepdf,[id],(err,nomepdf)=>{
+           connection.query(query,[id],(err,results)=>{
+         
+            if(!err){
+              if(results.affectedRows == 0){
+                res.status(404).json({message:'id não encontrado'})
+              }
+               fs.rm(`pdfs/escala-coroinha-pdf/${nomepdf[0].escala_coroinha}`, { recursive:true }, (err) => {
+                if(err){
+                    // File deletion failed
+                    console.error(err.message);
+                    return;
+                }
+                console.log("File deleted successfully");
+            }) 
+              res.status(200).json({message:'Pdf deletado com sucesso !!!'})
+            }else{
+              res.status(500).json(err)
+            } 
+         })
+     }) 
+     
+
+})
+
+
+
 
 router.post('/create',(req,res)=>{
   let escala_coroinha = req.body;
