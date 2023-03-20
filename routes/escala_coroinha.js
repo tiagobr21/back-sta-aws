@@ -16,7 +16,7 @@ router.post('/gerarpdf',(req,res)=>{
   let paginas = escala_coroinha.length;
   
   console.log(paginas)
-  
+
     if(paginas == 1){
 
         let pagina1 = JSON.parse(escala_coroinha[0].pagina1);
@@ -148,11 +148,11 @@ router.post('/gerarpdf',(req,res)=>{
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
-                return res.status(500).json("error"+err)
+                return res.status(500).json("ERROR AQUI"+err)
               }else{
                 pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
-                      console.log(err)
+                      console.log("ERRO AQUI:"+err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
@@ -166,7 +166,7 @@ router.post('/gerarpdf',(req,res)=>{
                   if(!err){
      
                   }else{
-                    return res.status(500).json(err)
+                    return res.status(500).json('ERROR AQUI'+err)
                   } 
                 })
               }
