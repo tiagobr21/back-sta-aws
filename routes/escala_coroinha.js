@@ -43,7 +43,7 @@ router.post('/gerarpdf',(req,res)=>{
                 }else{
                  
                   console.log(pdf)
-                  pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                  pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                       if(err){
                         console.log(err)
                         return res.status(500).json(err)
@@ -97,7 +97,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -150,10 +150,9 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json(err)
               }else{
-                console.log("results:"+results)
                 pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
-                      console.log("ERRO AQUI:"+err)
+                      console.log(err)
                       return res.status(500).json(err)
                     }else{
                       return res.status(200).json({message:'Escala criada com Sucesso !!!'})
@@ -203,7 +202,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -256,7 +255,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -309,7 +308,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -364,7 +363,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -419,7 +418,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -476,7 +475,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -532,7 +531,7 @@ router.post('/gerarpdf',(req,res)=>{
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
