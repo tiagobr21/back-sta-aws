@@ -148,8 +148,9 @@ router.post('/gerarpdf',(req,res)=>{
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
-                return res.status(500).json("ERROR AQUI"+err)
+                return res.status(500).json(err)
               }else{
+                console.log("results:"+results)
                 pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log("ERRO AQUI:"+err)
@@ -166,7 +167,7 @@ router.post('/gerarpdf',(req,res)=>{
                   if(!err){
      
                   }else{
-                    return res.status(500).json('ERROR AQUI'+err)
+                    return res.status(500).json(err)
                   } 
                 })
               }
