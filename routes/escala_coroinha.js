@@ -15,6 +15,7 @@ router.post('/gerarpdf',(req,res)=>{
   let escala_coroinha = req.body;
   let paginas = escala_coroinha.length;
   
+  console.log(paginas)
   
     if(paginas == 1){
 
