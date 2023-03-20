@@ -34,7 +34,7 @@ router.patch("/uploadimage/:id", multer(multerConfig).single("file"),async (req,
  router.get("/getimage/:id",auth.authenticateToken,(req,res)=>{
 
     let id = req.params.id;
-    let query= 'select image from user where id = ? ';
+    let query= 'select filename from user where id = ? ';
    
         connection.query(query,[id],(err,results)=>{
             if(!err){
@@ -111,7 +111,7 @@ router.post('/signup',(req,res)=>{
 router.post('/login',(req,res)=>{
 
     const user = req.body;
-    let query = "select id,name,email,password,status,role,image from user where email = ?"
+    let query = "select id,name,email,password,status,role,filename from user where email = ?"
 
     connection.query(query, [user.email] , (err,results)=>{
 
@@ -129,7 +129,7 @@ router.post('/login',(req,res)=>{
 
                 const response = {email: results[0].email, role: results[0].role }
                 const accessToken = jwt.sign(response,process.env.ACCESS_TOKEN,{expiresIn:'8h'})
-                res.status(200).json({message:'Usuário '+ results[0].name +' logado com sucesso',id:results[0].id,user:results[0].name, role:results[0].role,image:results[0].image, token: accessToken})
+                res.status(200).json({message:'Usuário '+ results[0].name +' logado com sucesso',id:results[0].id,user:results[0].name, role:results[0].role,filename:results[0].filename, token: accessToken})
 
             }else{
                 return res.status(400).json({message: "Algo ocorreu errado, tente novamente mais tarde"});
