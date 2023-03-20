@@ -151,7 +151,7 @@ router.post('/gerarpdf',(req,res)=>{
                 return res.status(500).json(err)
               }else{
                 console.log("results:"+results)
-                pdf.create(results).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log("ERRO AQUI:"+err)
                       return res.status(500).json(err)
