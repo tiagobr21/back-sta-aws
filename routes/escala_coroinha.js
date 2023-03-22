@@ -777,11 +777,11 @@ router.post('/create',(req,res)=>{
 
 router.get('/read',(req,res)=>{
   let escala_coroinha = req.body;
-  let query_read=('select missa,data,mes,ano,dia,hora,comunidade,acolito1,acolito2,acolito3,coroinha1,coroinha2,coroinha3,coroinha4,coroinha5 from escala_coroinha where id=?');
+  let query_read=('select missa,data,mes,ano,dia,hora,comunidade,acolito,coroinha from escala_coroinha where id=?');
   connection.query(query_read,[escala_coroinha.missa],(err,results)=>{
     if(!err){
         if(results.length <= 0){
-            let query = ('select id,missa,data,mes,ano,dia,hora,comunidade,acolito1,acolito2,acolito3,coroinha1,coroinha2,coroinha3,coroinha4,coroinha5 from escala_coroinha order by id DESC');
+            let query = ('select id,missa,data,mes,ano,dia,hora,comunidade,acolito,coroinha from escala_coroinha order by id DESC');
             connection.query(query,(err,results)=>{
                 if(!err){
                     res.status(200).json(results);
