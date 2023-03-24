@@ -53,8 +53,8 @@
                     <th scope="col">Hora</th>
                     <th scope="col">Dia</th>
                     <th scope="col">Local</th>
-                    <th scope="col">Acolitos</th>
                     <th scope="col">Coroinhas</th>
+                    <th scope="col">Acolitos</th>
                   </tr>
                 </thead>
            
@@ -66,18 +66,15 @@
                         <td><%= p1.hora %></td>
                         <td><%= p1.dia %></td>
                         <td><%= p1.comunidade %></td>
-                        <td><%= p1.acolito1 %><br>
-                            <%= p1.acolito2 %><br>
-                            <%= p1.acolito3 %><br>
-                        </td>
-                        <td><%= p1.coroinha1 %><br>
-                            <%= p1.coroinha2 %><br>
-                            <%= p1.coroinha3 %><br>
-                            <%= p1.coroinha4 %><br>
-                            <%= p1.coroinha5 %><br>
-                        </td>
-                      
-          
+                     
+                        <% p1.coroinha.forEach(coroinhas =>{ %>
+                          <td><%= coroinhas.nome %></td>
+                       <%  })%> 
+                
+                         <% p1.acolito.forEach(acolitos =>{ %>
+                            <td><%= acolitos.nome %></td>
+                         <% })%> 
+
                     </tr>
 
                     <% }) %>

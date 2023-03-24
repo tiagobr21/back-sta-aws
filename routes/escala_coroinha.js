@@ -15,7 +15,6 @@ router.post('/gerarpdf',(req,res)=>{
   let escala_coroinha = req.body;
   let paginas = escala_coroinha.length;
   
-  console.log(paginas)
 
     if(paginas == 1){
 
@@ -31,6 +30,23 @@ router.post('/gerarpdf',(req,res)=>{
         let pagina10 = undefined
         let tipo = escala_coroinha[0].tipo;
         const generateUuid = uuid.v1();
+        
+        pagina1.forEach(element => {
+            
+            console.log(JSON.parse(element.coroinha))
+                 
+       /*      element.coroinha.forEach(p1 => {
+
+                console.log(p1.nome)
+
+          }); */
+        });
+        
+      
+      //  let array =  JSON.parse(pagina1[0].coroinha) 
+
+      //  console.log(array[0].nome)
+      return;
 
 
         if(pagina1.length <= 10){
@@ -39,6 +55,7 @@ router.post('/gerarpdf',(req,res)=>{
             {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
           
                 if(err){
+                  console.log(err)
                   return res.status(500).json("error"+err)
                 }else{
                  
