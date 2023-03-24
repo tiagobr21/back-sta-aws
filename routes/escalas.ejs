@@ -10,12 +10,13 @@
           }
 
            #imgcabecalho{
-               background-image: url('http://localhost:3000/files/logo.png');
+               background-image: url('https://back-sta.herokuapp.com/files/logo.png');
                background-repeat: no-repeat;
                width: 100%;
                height: 100%;
                position: absolute;
                margin-top: 6px;
+               margin-bottom: 20px;
                left: 38%;
            }
 
@@ -24,7 +25,7 @@
                 border-collapse: collapse;
                 width: 100%;
                 margin-top:80px;
-                font-size: 8px;
+                font-size: 12px;
             }
         
             td,th{
@@ -53,8 +54,8 @@
                     <th scope="col">Hora</th>
                     <th scope="col">Dia</th>
                     <th scope="col">Local</th>
+                    <th scope="col">Acolitos</th> 
                     <th scope="col">Coroinhas</th>
-                    <th scope="col">Acolitos</th>
                   </tr>
                 </thead>
            
@@ -66,15 +67,22 @@
                         <td><%= p1.hora %></td>
                         <td><%= p1.dia %></td>
                         <td><%= p1.comunidade %></td>
-                     
-                        <% p1.coroinha.forEach(coroinhas =>{ %>
-                          <td><%= coroinhas.nome %></td>
-                       <%  })%> 
-                
-                         <% p1.acolito.forEach(acolitos =>{ %>
-                            <td><%= acolitos.nome %></td>
-                         <% })%> 
 
+                        <td>  
+                          <%  JSON.parse(p1.acolito).forEach(acolito =>{ %>  
+                          <%= acolito.nome %> <br><br><br>
+                          <% }) %>
+                          
+                        </td> 
+              
+                        <td>  
+                            <%  JSON.parse(p1.coroinha).forEach(coroinha =>{ %>  
+                            <%= coroinha.nome %> <br><br><br>
+                            <% }) %>
+                        </td> 
+            
+                
+    
                     </tr>
 
                     <% }) %>
@@ -108,29 +116,25 @@
               </thead>
 
               <tbody>
-
-                    <% pagina2.forEach(p2 =>{ %>
+                <% pagina2.forEach(p2 =>{ %>
                   <tr>
                       <td><%= p2.data %></td>
                       <td><%= p2.hora %></td>
                       <td><%= p2.dia %></td>
                       <td><%= p2.comunidade %></td>
-                      <td><%= p2.acolito1 %><br>
-                          <%= p2.acolito2 %><br>
-                          <%= p2.acolito3 %><br>
-                      </td>
-                      <td><%= p2.coroinha1 %><br>
-                          <%= p2.coroinha2 %><br>
-                          <%= p2.coroinha3 %><br>
-                          <%= p2.coroinha4 %><br>
-                          <%= p2.coroinha5 %><br>
-                      </td>
-                    
-        
+                      <td>  
+                          <%   JSON.parse(p2.coroinha).forEach(coroinha =>{ %>  
+                          <%= coroinha.nome %> <br>
+                          <% }) %>
+                      </td> 
+                      <td>  
+                        <%  JSON.parse(p2.acolito).forEach(acolito =>{ %>  
+                        <%= acolito.nome %> <br>
+                        <% }) %>
+                      </td> 
                   </tr>
 
                   <% }) %>
-            
               </tbody>
             </table>
 
@@ -169,18 +173,17 @@
                       <td><%= p3.hora %></td>
                       <td><%= p3.dia %></td>
                       <td><%= p3.comunidade %></td>
-                      <td><%= p3.acolito1 %><br>
-                          <%= p3.acolito2 %><br>
-                          <%= p3.acolito3 %><br>
-                      </td>
-                      <td><%= p3.coroinha1 %><br>
-                          <%= p3.coroinha2 %><br>
-                          <%= p3.coroinha3 %><br>
-                          <%= p3.coroinha4 %><br>
-                          <%= p3.coroinha5 %><br>
-                      </td>
-                    
-        
+                      <td>  
+                        <%   JSON.parse(p3.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p3.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
+                
                   </tr>
 
                   <% }) %>
@@ -223,18 +226,17 @@
                       <td><%= p4.hora %></td>
                       <td><%= p4.dia %></td>
                       <td><%= p4.comunidade %></td>
-                      <td><%= p4.acolito1 %><br>
-                          <%= p4.acolito2 %><br>
-                          <%= p4.acolito3 %><br>
-                      </td>
-                      <td><%= p4.coroinha1 %><br>
-                          <%= p4.coroinha2 %><br>
-                          <%= p4.coroinha3 %><br>
-                          <%= p4.coroinha4 %><br>
-                          <%= p4.coroinha5 %><br>
-                      </td>
-                    
-        
+                      <td>  
+                        <%   JSON.parse(p4.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                      </td> 
+                      <td>  
+                        <%  JSON.parse(p4.acolito).forEach(acolito =>{ %>  
+                        <%= acolito.nome %> <br>
+                        <% }) %>
+                      </td> 
+                  
                   </tr>
 
                   <% }) %>
@@ -277,16 +279,16 @@
                       <td><%= p5.hora %></td>
                       <td><%= p5.dia %></td>
                       <td><%= p5.comunidade %></td>
-                      <td><%= p5.acolito1 %><br>
-                          <%= p5.acolito2 %><br>
-                          <%= p5.acolito3 %><br>
-                      </td>
-                      <td><%= p5.coroinha1 %><br>
-                          <%= p5.coroinha2 %><br>
-                          <%= p5.coroinha3 %><br>
-                          <%= p5.coroinha4 %><br>
-                          <%= p5.coroinha5 %><br>
-                      </td>
+                      <td>  
+                        <%   JSON.parse(p5.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p5.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
                     
         
                   </tr>
@@ -331,16 +333,16 @@
                       <td><%= p6.hora %></td>
                       <td><%= p6.dia %></td>
                       <td><%= p6.comunidade %></td>
-                      <td><%= p6.acolito1 %><br>
-                          <%= p6.acolito2 %><br>
-                          <%= p6.acolito3 %><br>
-                      </td>
-                      <td><%= p6.coroinha1 %><br>
-                          <%= p6.coroinha2 %><br>
-                          <%= p6.coroinha3 %><br>
-                          <%= p6.coroinha4 %><br>
-                          <%= p6.coroinha5 %><br>
-                      </td>
+                      <td>  
+                        <%   JSON.parse(p6.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p6.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
                     
         
                   </tr>
@@ -385,17 +387,16 @@
                       <td><%= p7.hora %></td>
                       <td><%= p7.dia %></td>
                       <td><%= p7.comunidade %></td>
-                      <td><%= p7.acolito1 %><br>
-                          <%= p7.acolito2 %><br>
-                          <%= p7.acolito3 %><br>
-                      </td>
-                      <td><%= p7.coroinha1 %><br>
-                          <%= p7.coroinha2 %><br>
-                          <%= p7.coroinha3 %><br>
-                          <%= p7.coroinha4 %><br>
-                          <%= p7.coroinha5 %><br>
-                      </td>
-                    
+                      <td>  
+                        <%   JSON.parse(p7.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p7.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
         
                   </tr>
 
@@ -439,16 +440,16 @@
                       <td><%= p8.hora %></td>
                       <td><%= p8.dia %></td>
                       <td><%= p8.comunidade %></td>
-                      <td><%= p8.acolito1 %><br>
-                          <%= p8.acolito2 %><br>
-                          <%= p8.acolito3 %><br>
-                      </td>
-                      <td><%= p8.coroinha1 %><br>
-                          <%= p8.coroinha2 %><br>
-                          <%= p8.coroinha3 %><br>
-                          <%= p8.coroinha4 %><br>
-                          <%= p8.coroinha5 %><br>
-                      </td>
+                      <td>  
+                        <%   JSON.parse(p8.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p8.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
                     
         
                   </tr>
@@ -493,16 +494,16 @@
                       <td><%= p9.hora %></td>
                       <td><%= p9.dia %></td>
                       <td><%= p9.comunidade %></td>
-                      <td><%= p9.acolito1 %><br>
-                          <%= p9.acolito2 %><br>
-                          <%= p9.acolito3 %><br>
-                      </td>
-                      <td><%= p9.coroinha1 %><br>
-                          <%= p9.coroinha2 %><br>
-                          <%= p9.coroinha3 %><br>
-                          <%= p9.coroinha4 %><br>
-                          <%= p9.coroinha5 %><br>
-                      </td>
+                      <td>  
+                        <%   JSON.parse(p9.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p9.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
                     
         
                   </tr>
@@ -547,16 +548,16 @@
                       <td><%= p10.hora %></td>
                       <td><%= p10.dia %></td>
                       <td><%= p10.comunidade %></td>
-                      <td><%= p10.acolito1 %><br>
-                          <%= p10.acolito2 %><br>
-                          <%= p10.acolito3 %><br>
-                      </td>
-                      <td><%= p10.coroinha1 %><br>
-                          <%= p10.coroinha2 %><br>
-                          <%= p10.coroinha3 %><br>
-                          <%= p10.coroinha4 %><br>
-                          <%= p10.coroinha5 %><br>
-                      </td>
+                      <td>  
+                        <%   JSON.parse(p10.coroinha).forEach(coroinha =>{ %>  
+                        <%= coroinha.nome %> <br>
+                        <% }) %>
+                    </td> 
+                    <td>  
+                      <%  JSON.parse(p10.acolito).forEach(acolito =>{ %>  
+                      <%= acolito.nome %> <br>
+                      <% }) %>
+                    </td> 
                     
         
                   </tr>

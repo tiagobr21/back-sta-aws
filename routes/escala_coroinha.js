@@ -9,12 +9,13 @@ let path = require('path');
 let pdf = require('html-pdf');
 let ejs = require('ejs');
 let uuid = require('uuid');
+const { resourceUsage } = require('process');
 
 router.post('/gerarpdf',(req,res)=>{
 
   let escala_coroinha = req.body;
   let paginas = escala_coroinha.length;
-  
+
 
     if(paginas == 1){
 
@@ -30,24 +31,7 @@ router.post('/gerarpdf',(req,res)=>{
         let pagina10 = undefined
         let tipo = escala_coroinha[0].tipo;
         const generateUuid = uuid.v1();
-        
-        pagina1.forEach(element => {
-            
-            console.log(JSON.parse(element.coroinha))
-                 
-       /*      element.coroinha.forEach(p1 => {
-
-                console.log(p1.nome)
-
-          }); */
-        });
-        
-      
-      //  let array =  JSON.parse(pagina1[0].coroinha) 
-
-      //  console.log(array[0].nome)
-      return;
-
+  
 
         if(pagina1.length <= 10){
             
@@ -59,7 +43,6 @@ router.post('/gerarpdf',(req,res)=>{
                   return res.status(500).json("error"+err)
                 }else{
                  
-                  console.log(pdf)
                   pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-coroinha-pdf/'+'escala-coroinha-'+generateUuid+'.pdf',(err,data)=>{
                       if(err){
                         console.log(err)
