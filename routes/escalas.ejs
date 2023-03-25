@@ -2,11 +2,19 @@
     <head>
         <style>
 
-          #cabecalho{
+          #cabecalhopai{
             margin: auto 0 ;
             align-items: center;
             justify-content: center;
             display: flex;
+          }
+
+          #cabecalhofilho{
+            margin: auto 0 ;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin-top: -40px;
           }
 
            #imgcabecalho{
@@ -16,7 +24,7 @@
                height: 100%;
                position: absolute;
                margin-top: 6px;
-               margin-bottom: 20px;
+               margin-bottom: 100px;
                left: 38%;
            }
 
@@ -24,23 +32,24 @@
                 font-family: arial,sans-serif;
                 border-collapse: collapse;
                 width: 100%;
-                margin-top:80px;
+                margin-top:100px;
                 font-size: 12px;
             }
         
-            td,th{
+            td{
                 border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
+                height: 97px;
             }
         </style>
 
     </head>
     <body>
 
-            <div id="cabecalho">
+            <div id="cabecalhopai">
               <div id="imgcabecalho"></div>
-              <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+              <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
             </div>
             
             <table  class="table table-bordered" class="tabela-1" >
@@ -69,23 +78,27 @@
                         <td><%= p1.comunidade %></td>
 
                         <td>  
+                         
                           <%  JSON.parse(p1.acolito).forEach(acolito =>{ %>  
-                          <%= acolito.nome %> <br><br><br>
+                          <%= acolito.nome %> <br>
                           <% }) %>
-                          
+          
                         </td> 
               
                         <td>  
                             <%  JSON.parse(p1.coroinha).forEach(coroinha =>{ %>  
-                            <%= coroinha.nome %> <br><br><br>
+                            <%= coroinha.nome %> <br>
                             <% }) %>
+              
                         </td> 
             
+                        
                 
     
                     </tr>
 
                     <% }) %>
+                 
               
                 </tbody>
               </table>
@@ -95,9 +108,9 @@
             <% if(pagina2 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -145,9 +158,9 @@
             <% if(pagina3 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -198,9 +211,9 @@
             <% if(pagina4 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -251,9 +264,9 @@
             <% if(pagina5 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -305,9 +318,9 @@
             <% if(pagina6 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -359,9 +372,9 @@
             <% if(pagina7 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -412,9 +425,9 @@
             <% if(pagina8 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -466,9 +479,9 @@
             <% if(pagina9 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
@@ -520,9 +533,9 @@
             <% if(pagina10 != undefined){ %>
 
               
-              <div id="cabecalho">
+              <div id="cabecalhofilho">
                 <div id="imgcabecalho"></div>
-                <h3 style="text-align: center; font-size: 10px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
+                <h3 style="text-align: center; font-size: 14px;">Sistema Santa Teresinha - Escala <%= tipo%></h3>
               </div>
 
             <table  class="table table-bordered" class="tabela-1" >
