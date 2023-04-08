@@ -184,15 +184,15 @@ router.post('/forgotpassword',(req,res)=>{
                     port: 465,
                     secure: true,
                     auth:{
-                        user:'santateresinhamanaus@gmail.com ',
-                        pass:''
+                        user:'santateresinhamanaus@gmail.com',
+                        pass:'mmsibnoqnfmlvgzw'
                     }
                 })
                 var mailOptions = {
-                  from: 'Sistema Santa Teresinha <paroquiasantateresinhatest@outlook.com>',
+                  from: 'Sistema Santa Teresinha <santateresinhamanaus@gmail.com>',
                   to: results[0].email,
-                  subject: 'Senha do Sta',
-                  html: '<p> <b> Seu Login da Sta</b> <br> <b>Email:</b>'+results[0].email+'<br> <b>Senha:</b> '+results[0].password+' <br> <a href="http://localhost:4200/"> Clique aqui para Entrar </a>  </p>',
+                  subject: 'Recuperação de Senha',
+                  html: '<p> <b> Seu Login da Sta</b> <br> <b>Email:</b>'+results[0].email+'<br> <b>Senha:</b> '+results[0].password+' <br> <a href="https://front-sta.herokuapp.com/login"> Clique aqui para Entrar </a>  </p>',
                   text: 'Olá , test'
                 }
                 transport.sendMail(mailOptions,function(error,info){
@@ -210,6 +210,7 @@ router.post('/forgotpassword',(req,res)=>{
         }
     })
 })      
+
 
 
 
