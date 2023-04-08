@@ -608,7 +608,6 @@ router.delete("/deletepdf/:id",(req,res)=>{
 
 //create
 
-
 router.post('/create',(req,res)=>{
   let escala_coroinha = req.body;
   let query_consulta=('select missa,data,mes,ano,dia,hora,comunidade,acolito,coroinha from escala_coroinha where id=?');
@@ -817,8 +816,9 @@ router.delete('/delete/:id',auth.authenticateToken,checkRole.checkRole,(req,res)
 router.put('/update/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
     let id = req.params.id;
     let body = req.body;
-    let query = ("update escala_coroinha set missa = ?,data = ?,mes = ?,ano = ?, dia= ? ,hora = ?,comunidade = ?,acolito1 = ?,acolito2 = ?,acolito3 = ?,coroinha1 = ?,coroinha2 = ?,coroinha3 = ?,coroinha4 = ?,coroinha5 = ? where id = ?");
-    connection.query(query,[body.missa,body.data,body.mes,body.ano,body.dia,body.hora,body.comunidade,body.acolito1,body.acolito2,body.acolito3,body.coroinha1,body.coroinha2,body.coroinha3,body.coroinha4,body.coroinha5,id],(err,results)=>{
+    let query = ("update escala_coroinha set missa = ?,data = ?,acolito = ?, coroinha = ? where id = ?");
+
+    connection.query(query,[body.missa,body.data,body.acolito,body.coroinha,id],(err,results)=>{
       if(!err){          
           return res.status(200).json({message:'Escala Alterada com sucesso'});
       }else{
