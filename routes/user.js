@@ -14,14 +14,14 @@ require('dotenv').config();
   // prod: https://back-sta.herokuapp.com
 
 router.patch("/uploadimage/:id", multer(multerConfig).single("file"),async (req,res)=>{
-    
+
 
      let filename = req.file.filename;
-     let query = 'update user set image = ?, filename = ? where id = ? ';
+     let query = 'update user set filename = ? where id = ? ';
      let id = req.params.id;
-     const image = `https://back-sta.herokuapp.com/files/${filename}`;
+     const image = `http://localhost:3000/files/${filename}`;
     
-     connection.query(query,[image,filename,id],(err,results)=>{
+     connection.query(query,[filename,id],(err,results)=>{
         if(!err){
           return res.status(200).json({message:'Imagem carregada com sucesso!'})
         }else{
@@ -50,11 +50,13 @@ router.patch("/uploadimage/:id", multer(multerConfig).single("file"),async (req,
 
 
  router.delete('/deleteimage/:id',auth.authenticateToken,(req,res)=>{
+    
+
 
     let id = req.params.id;
-    let queryImage = 'update user set image = null,filename = null where id = ?';
+    let queryImage = 'update user set filename = null where id = ?';
     let queryFilename = 'select filename from user where id = ?';
-
+    console.log(id )
         connection.query(queryFilename,[id],(err,filename)=>{
                connection.query(queryImage,[id],(err,results)=>{
                 if(!err){
