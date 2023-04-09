@@ -19,7 +19,7 @@ router.patch("/uploadimage/:id", multer(multerConfig).single("file"),async (req,
      let filename = req.file.filename;
      let query = 'update user set filename = ? where id = ? ';
      let id = req.params.id;
-     const image = `http://localhost:3000/files/${filename}`;
+     const image = `https://back-sta.herokuapp.com/files/${filename}`;
     
      connection.query(query,[filename,id],(err,results)=>{
         if(!err){
