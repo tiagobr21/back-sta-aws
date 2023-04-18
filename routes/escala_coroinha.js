@@ -34,10 +34,11 @@ router.post('/gerarpdf',(req,res)=>{
   
 
         if(pagina1.length <= 10){
-            
-            ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+   
+            ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
             {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
-          
+                
+              console.log(results)
                 if(err){
                   console.log(err)
                   return res.status(500).json("error"+err)
@@ -91,7 +92,7 @@ router.post('/gerarpdf',(req,res)=>{
   
        if(pagina1.length <= 10 && pagina2.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -144,7 +145,7 @@ router.post('/gerarpdf',(req,res)=>{
   
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -196,7 +197,7 @@ router.post('/gerarpdf',(req,res)=>{
 
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -249,7 +250,7 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -302,7 +303,7 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -357,7 +358,7 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -412,7 +413,7 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -469,7 +470,7 @@ router.post('/gerarpdf',(req,res)=>{
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
         &&  pagina9.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
@@ -525,7 +526,7 @@ router.post('/gerarpdf',(req,res)=>{
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
         &&  pagina9.length <= 10 &&  pagina10.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_coroinha.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){

@@ -3,12 +3,19 @@ const connection = require('../connection');
 const router = express.Router();
 var auth = require('../services/authentication');
 var checkRole = require('../services/checkRole');
-
+let fs = require('fs');
+let path = require('path');
+let pdf = require('html-pdf');
+let ejs = require('ejs');
+let uuid = require('uuid');
+const { resourceUsage } = require('process');
 
 router.post('/gerarpdf',(req,res)=>{
 
   let escala_ministro = req.body;
   let paginas = escala_ministro.length;
+
+
 
 
     if(paginas == 1){
@@ -25,21 +32,24 @@ router.post('/gerarpdf',(req,res)=>{
         let pagina10 = undefined
         let tipo = escala_ministro[0].tipo;
         const generateUuid = uuid.v1();
-  
+    
+        
 
         if(pagina1.length <= 10){
-            
-            ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+
+        console.log(pagina1)
+            ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
             {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
-          
+              
+               
                 if(err){
                   console.log(err)
                   return res.status(500).json("error"+err)
                 }else{
                  
-                  pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                  pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                       if(err){
-                        console.log(err)
+                        console.log("error"+err)
                         return res.status(500).json(err)
                       }else{
 
@@ -47,7 +57,7 @@ router.post('/gerarpdf',(req,res)=>{
                       }
                   })
 
-                  let data = 'escala-acolito-'+generateUuid+'.pdf';
+                  let data = 'escala-ministro-'+generateUuid+'.pdf';
                   let query = 'insert into pdf (id,escala_ministro) values (default,?)';
                 
                   connection.query(query,[data],(err,results)=>{
@@ -85,13 +95,13 @@ router.post('/gerarpdf',(req,res)=>{
   
        if(pagina1.length <= 10 && pagina2.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -100,7 +110,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -138,13 +148,13 @@ router.post('/gerarpdf',(req,res)=>{
   
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json(err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -153,7 +163,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -190,13 +200,13 @@ router.post('/gerarpdf',(req,res)=>{
 
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -205,7 +215,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -243,13 +253,13 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -258,7 +268,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -296,13 +306,13 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -311,7 +321,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -351,13 +361,13 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -366,7 +376,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -406,13 +416,13 @@ router.post('/gerarpdf',(req,res)=>{
        if(pagina1.length <= 10 && pagina2.length <= 10 && pagina3.length <= 10 &&  pagina4.length <= 10
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -421,7 +431,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -463,13 +473,13 @@ router.post('/gerarpdf',(req,res)=>{
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
         &&  pagina9.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -478,7 +488,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -519,13 +529,13 @@ router.post('/gerarpdf',(req,res)=>{
         &&  pagina5.length <= 10   &&  pagina6.length <= 10 &&  pagina7.length <= 10  &&  pagina8.length <= 10
         &&  pagina9.length <= 10 &&  pagina10.length <= 10){
       
-          ejs.renderFile(path.join(__dirname,'./','escalas.ejs'),
+          ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
           {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
         
               if(err){
                 return res.status(500).json("error"+err)
               }else{
-                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-acolito-pdf/'+'escala-acolito-'+generateUuid+'.pdf',(err,data)=>{
+                pdf.create(results,{childProcessOptions: {env: {OPENSSL_CONF: '/dev/null',},}}).toFile('pdfs/escala-ministro-pdf/'+'escala-ministro-'+generateUuid+'.pdf',(err,data)=>{
                     if(err){
                       console.log(err)
                       return res.status(500).json(err)
@@ -534,7 +544,7 @@ router.post('/gerarpdf',(req,res)=>{
                     }
                 })
                 
-                let data = 'escala-acolito-'+generateUuid+'.pdf';
+                let data = 'escala-ministro-'+generateUuid+'.pdf';
                 let query = 'insert into pdf (id,escala_ministro) values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
@@ -554,7 +564,48 @@ router.post('/gerarpdf',(req,res)=>{
   
 });
 
+router.get('/getpdf',(req,res)=>{
+  let pdf = req.body
+  let query = 'select id,escala_ministro from pdf order by id DESC';
 
+  connection.query(query,[pdf],(err,results)=>{
+    if(!err){
+      res.status(200).json(results)
+    }else{
+      res.status(500).json(err)
+    }
+  })
+})
+
+router.delete("/deletepdf/:id",(req,res)=>{
+  
+  let id = req.params.id;
+  let body = req.body
+  let query = 'delete from pdf where id = ?';
+  namepdf = 'select escala_ministro from pdf where id = ?'
+
+     connection.query(namepdf,[id],(err,nomepdf)=>{
+           connection.query(query,[id],(err,results)=>{
+         
+            if(!err){
+              if(results.affectedRows == 0){
+                res.status(404).json({message:'id não encontrado'})
+              }
+               fs.rm(`pdfs/escala-ministro-pdf/${nomepdf[0].escala_ministro}`, { recursive:true }, (err) => {
+                if(err){
+                    // File deletion failed
+                    console.error(err.message);
+                    return;
+                }
+                console.log("File deleted successfully");
+            }) 
+              res.status(200).json({message:'Pdf deletado com sucesso !!!'})
+            }else{
+              res.status(500).json(err)
+            } 
+         })
+     }) 
+})
 
 
 router.post('/create',(req,res)=>{
@@ -571,7 +622,7 @@ router.post('/create',(req,res)=>{
                   }
                 });
               }else if(escala_ministro.missa === 'Domingo: Missa/Celebração N.S.Rosário 7h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Domingo','7h','N.S.Rosário',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Domingo','7h','N.S.Rosário',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     
@@ -582,7 +633,7 @@ router.post('/create',(req,res)=>{
                   }
               });
               }else if(escala_ministro.missa === 'Domingo: Missa/Celebração N.S.Perpétuo Socorro 8h30'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Domingo','8h30','N.S.Perpétuo Socorro',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Domingo','8h30','N.S.Perpétuo Socorro',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     if(!err){
@@ -592,7 +643,7 @@ router.post('/create',(req,res)=>{
                     }
                   });
               }else if(escala_ministro.missa === 'Domingo: Missa/Celebração N.S.Rosário 17h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Domingo','17h','N.S.Rosário',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Domingo','17h','N.S.Rosário',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     if(!err){
@@ -602,7 +653,7 @@ router.post('/create',(req,res)=>{
                     }
                   });
               }else if(escala_ministro.missa === 'Domingo: Missa/Celebração Santa Teresinha 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Domingo','17h','N.S.Rosário',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Domingo','17h','N.S.Rosário',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     if(!err){
@@ -612,7 +663,7 @@ router.post('/create',(req,res)=>{
                     }
                   });
               }else if(escala_ministro.missa === 'Terça: Novena com Adoração e Celebração Eucarística Santa Teresinha 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Terça','19h','Santa Teresinha',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Terça','19h','Santa Teresinha',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     if(!err){
@@ -622,7 +673,7 @@ router.post('/create',(req,res)=>{
                     }
                   });
               }else if(escala_ministro.missa === 'Terça: Novena com Adoração e Celebração Eucarística São Pedro 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Terça','19h','São Pedro',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Terça','19h','São Pedro',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                   (err,results)=>{
                     if(!err){
@@ -632,7 +683,7 @@ router.post('/create',(req,res)=>{
                     }
                   });
               }else if(escala_ministro.missa === 'Terça: Novena com Adoração e Celebração Eucarística N. S. Perpétuo Socorro 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Terça','19h','N. S. Perpétuo Socorro',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Terça','19h','N. S. Perpétuo Socorro',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -642,7 +693,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Quarta: Terço dos Homens Ministração da Palavra de Deus Santa Teresinha 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Quarta','19h','Santa Teresinha',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Quarta','19h','Santa Teresinha',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -652,7 +703,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Quarta: Terço dos Homens Ministração da Palavra de Deus Santa Teresinha 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Quarta','19h','Santa Teresinha',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Quarta','19h','Santa Teresinha',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -662,7 +713,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Quinta: Novena com Adoração e Celebração Eucarística N.S.Rosário 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Quinta','19h','N.S.Rosário',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Quinta','19h','N.S.Rosário',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -672,7 +723,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Quinta: Adoração ao Santíssimo Grupo de Oração Santa Teresinha 20h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Quinta','20h','Santa Teresinha',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Quinta','20h','Santa Teresinha',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -682,7 +733,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Sábado: Missa/Celebração São Pedro 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Sábado','19h','São Pedro',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Sábado','19h','São Pedro',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -692,7 +743,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Sábado: Missa/Celebração Sagrado Coração de Jesus 19h'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Sábado','19h','Sagrado Coração de Jesus',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Sábado','19h','Sagrado Coração de Jesus',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
@@ -702,7 +753,7 @@ router.post('/create',(req,res)=>{
                       }
                     });
               }else if(escala_ministro.missa === 'Sábado: Missa em Reparação ao Imaculado Coração de Maria Santa Teresinha 17h45'){
-                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministro) values(default,?,?,?,?,'Sábado','17h45','Santa Teresinha',?)");
+                let query_criar = ("insert into escala_ministro (id,missa,data,mes,ano,dia,hora,comunidade,ministros) values(default,?,?,?,?,'Sábado','17h45','Santa Teresinha',?)");
                 connection.query(query_criar,[escala_ministro.missa,escala_ministro.data,escala_ministro.mes,escala_ministro.ano,escala_ministro.ministro],
                    (err,results)=>{
                       if(!err){
