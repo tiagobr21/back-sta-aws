@@ -16,8 +16,6 @@ router.post('/gerarpdf',(req,res)=>{
   let paginas = escala_ministro.length;
 
 
-
-
     if(paginas == 1){
 
         let pagina1 = JSON.parse(escala_ministro[0].pagina1);
@@ -37,7 +35,7 @@ router.post('/gerarpdf',(req,res)=>{
 
         if(pagina1.length <= 10){
 
-        console.log(pagina1)
+    
             ejs.renderFile(path.join(__dirname,'./','escala_ministro.ejs'),
             {pagina1:pagina1,pagina2:pagina2,pagina3:pagina3,pagina4:pagina4,pagina5:pagina5,pagina6:pagina6,pagina7:pagina7,pagina8:pagina8,pagina9:pagina9,pagina10:pagina10,tipo:tipo},(err,results)=>{
               
@@ -58,7 +56,7 @@ router.post('/gerarpdf',(req,res)=>{
                   })
 
                   let data = 'escala-ministro-'+generateUuid+'.pdf';
-                  let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                  let query = 'insert into pdf_escala_ministro values (default,?)';
                 
                   connection.query(query,[data],(err,results)=>{
                     if(!err){
@@ -111,7 +109,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -164,7 +162,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -216,7 +214,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -269,7 +267,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -322,7 +320,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -377,7 +375,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -432,7 +430,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -489,7 +487,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -545,7 +543,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-ministro-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_ministro) values (default,?)';
+                let query = 'insert into pdf_escala_ministro values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -566,7 +564,7 @@ router.post('/gerarpdf',(req,res)=>{
 
 router.get('/getpdf',(req,res)=>{
   let pdf = req.body
-  let query = 'select id,escala_ministro from pdf order by id DESC';
+  let query = 'select id,filename from pdf_escala_ministro order by id DESC';
 
   connection.query(query,[pdf],(err,results)=>{
     if(!err){
@@ -581,8 +579,8 @@ router.delete("/deletepdf/:id",(req,res)=>{
   
   let id = req.params.id;
   let body = req.body
-  let query = 'delete from pdf where id = ?';
-  namepdf = 'select escala_ministro from pdf where id = ?'
+  let query = 'delete from pdf_escala_ministro where id = ?';
+  namepdf = 'select * from pdf_escala_ministro where id = ?'
 
      connection.query(namepdf,[id],(err,nomepdf)=>{
            connection.query(query,[id],(err,results)=>{
@@ -591,7 +589,7 @@ router.delete("/deletepdf/:id",(req,res)=>{
               if(results.affectedRows == 0){
                 res.status(404).json({message:'id não encontrado'})
               }
-               fs.rm(`pdfs/escala-ministro-pdf/${nomepdf[0].escala_ministro}`, { recursive:true }, (err) => {
+               fs.rm(`pdfs/escala-ministro-pdf/${nomepdf[0].filename}`, { recursive:true }, (err) => {
                 if(err){
                     // File deletion failed
                     console.error(err.message);
@@ -766,6 +764,22 @@ router.post('/create',(req,res)=>{
        });//ROUTER
 
 
+  router.get('/getSingleData/:id',(req,res)=>{
+        let id = req.params.id;
+        let query = ('select * from escala_ministro where id=?');
+        connection.query(query,[id],(err,results)=>{
+          if(!err){
+            if(results.affectedRows==0){
+                res.status(404).json({message:'id não encontrado'});
+            }
+            return res.status(200).json(results);
+        }else{
+            res.status(500).json(err);
+        }
+    });
+  });
+    
+
 
 router.get('/read',(req,res)=>{
    let escala_ministro = req.body;
@@ -813,8 +827,9 @@ router.delete('/delete/:id',(req,res)=>{
 router.put('/update/:id',(req,res)=>{
   let id = req.params.id;
   let body = req.body;
-  let query = ("update escala_ministro set missa = ?, data = ?,mes = ?,ano = ?,dia = ?, hora = ?, comunidade = ?, ministros = ?");
-  connection.query(query,[body.missa,body.data,body.mes,body.ano,body.dia, body.hora, body.comunidade, body.ministros,id],(err,result)=>{
+  
+  let query = ("update escala_ministro set missa = ?, data = ?,ministros = ?");
+  connection.query(query,[body.missa,body.data, body.ministros,id],(err,result)=>{
     if(!err){
       return res.status(200).json({message:'Escala Atualizada'});
     }else{
@@ -826,7 +841,7 @@ router.put('/update/:id',(req,res)=>{
 
 router.get('/select_ministro',(req,res)=>{
    let body = req.body;
-   let query = ('select nome from ministros order by nome');
+   let query = ('select id,nome from ministros order by nome');
    connection.query(query,(err,result)=>{
      if(!err){
         res.status(200).json(result);
@@ -863,7 +878,7 @@ router.get('/select_missa',(req,res)=>{
 
 // funcões do administrador
 
-router.post('/create_ministro',(req,res)=>{
+router.post('/create_ministro',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
   let body = req.body
   let query_consulta = ('select id,nome from ministros');
   connection.query(query_consulta,[query_consulta.nome],(err,results)=>{
@@ -871,7 +886,7 @@ router.post('/create_ministro',(req,res)=>{
           let query = ('insert into ministros values (default,?)');
           connection.query(query,[body.nome],(err,result)=>{
             if(!err){
-              res.status(200).json({message:'Ministro criado com sucesso'});
+              res.status(200).json({message:'Ministro criado com Sucesso'});
             }else{
               res.status(500).json(err);
             }
@@ -885,13 +900,14 @@ router.post('/create_ministro',(req,res)=>{
 
 
 
-router.put('/update_ministro/:id',(req,res)=>{
+router.put('/update_ministro/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
   let id = req.params.id
   let body = req.body;
-  let query = ('update ministros set nome = ? where id = ?');
+ 
+  let query = ("update ministros set nome = ? where id = ?");
   connection.query(query,[body.nome,id],(err,result)=>{
     if(!err){
-      res.status(200).json({message:'Ministro atualizado com sucesso!!!'});
+      return res.status(200).json({message:'Ministro atualizado com Sucesso'});
     }else{
       res.status(500).json(err);
     }
@@ -900,18 +916,19 @@ router.put('/update_ministro/:id',(req,res)=>{
 });
 
 
-router.delete('/delete_ministro/:id',(req,res)=>{
+router.delete('/delete_ministro/:id',auth.authenticateToken,checkRole.checkRole,(req,res)=>{
   let id = req.params.id
-  let body = req.body;
   let query = ('delete from ministros where id = ?');
   connection.query(query,[id],(err,result)=>{
-    if(!err){
-      res.status(200).json({message:'Ministro deletado com sucesso!!!'});
-    }else{
-      res.status(500).json(err);
-    }
-    res.status(400).json({message:'id não encontrado'});
-  }); 
+      if(!err){
+          if(result.affectedRows==0){
+              res.status(404).json({message:'id não encontrado'});
+          }
+          return res.status(200).json({message:'Ministro deletado com Sucesso'});
+      }else{
+          res.status(500).json(err);
+      }
+    });
 });
 
 module.exports = router;

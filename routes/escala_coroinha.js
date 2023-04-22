@@ -55,7 +55,7 @@ router.post('/gerarpdf',(req,res)=>{
                   })
 
                   let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                  let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                  let query = 'insert into pdf_escala_coroinha values (default,?)';
                 
                   connection.query(query,[data],(err,results)=>{
                     if(!err){
@@ -108,7 +108,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -161,7 +161,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -213,7 +213,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -266,7 +266,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -319,7 +319,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -374,7 +374,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -429,7 +429,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -486,7 +486,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -542,7 +542,7 @@ router.post('/gerarpdf',(req,res)=>{
                 })
                 
                 let data = 'escala-coroinha-'+generateUuid+'.pdf';
-                let query = 'insert into pdf (id,escala_coroinha) values (default,?)';
+                let query = 'insert into pdf_escala_coroinha values (default,?)';
               
                 connection.query(query,[data],(err,results)=>{
                   if(!err){
@@ -563,7 +563,7 @@ router.post('/gerarpdf',(req,res)=>{
 
 router.get('/getpdf',(req,res)=>{
   let pdf = req.body
-  let query = 'select id,escala_coroinha from pdf order by id DESC';
+  let query = 'select id,filename from pdf_escala_coroinha order by id DESC';
 
   connection.query(query,[pdf],(err,results)=>{
     if(!err){
@@ -578,8 +578,8 @@ router.delete("/deletepdf/:id",(req,res)=>{
   
   let id = req.params.id;
   let body = req.body
-  let query = 'delete from pdf where id = ?';
-  namepdf = 'select escala_coroinha from pdf where id = ?'
+  let query = 'delete from pdf_escala_coroinha where id = ?';
+  namepdf = 'select * from pdf_escala_coroinha where id = ?'
 
      connection.query(namepdf,[id],(err,nomepdf)=>{
            connection.query(query,[id],(err,results)=>{
@@ -588,7 +588,7 @@ router.delete("/deletepdf/:id",(req,res)=>{
               if(results.affectedRows == 0){
                 res.status(404).json({message:'id não encontrado'})
               }
-               fs.rm(`pdfs/escala-coroinha-pdf/${nomepdf[0].escala_coroinha}`, { recursive:true }, (err) => {
+               fs.rm(`pdfs/escala-coroinha-pdf/${nomepdf[0].filename}`, { recursive:true }, (err) => {
                 if(err){
                     // File deletion failed
                     console.error(err.message);
@@ -908,7 +908,7 @@ router.get("/select_coroinha",(req,res)=>{
               let query = ('insert into coroinhas values (default,?)');
               connection.query(query,[body.nome],(err,result)=>{
                 if(!err){
-                  res.status(200).json({message:'Coroinha criado com sucesso'});
+                  res.status(200).json({message:'Coroinha criado com Sucesso'});
                 }else{
                   res.status(500).json(err);
                 }
@@ -927,7 +927,7 @@ router.get("/select_coroinha",(req,res)=>{
       let query = ("update coroinhas set nome=? where id=?");
       connection.query(query,[body.nome,id],(err,results)=>{
         if(!err){
-          return res.status(200).json({message:'Coroinha atualizado com sucesso!!!'});
+          return res.status(200).json({message:'Coroinha atualizado com Sucesso'});
         }else{
           res.status(500).json(err);
         }
@@ -944,7 +944,7 @@ router.get("/select_coroinha",(req,res)=>{
           if(results.affectedRows==0){
               res.status(404).json({message:'id não encontrado'});
           }
-          return res.status(200).json({message:'Escala deletada'});
+          return res.status(200).json({message:'Coroinha deletado com Sucesso'});
       }else{
           res.status(500).json(err);
       }
@@ -962,7 +962,7 @@ router.get("/select_coroinha",(req,res)=>{
               let query = ('insert into acolitos values (default,?)');
               connection.query(query,[body.nome],(err,result)=>{
                 if(!err){
-                  res.status(200).json({message:'acolito criado com sucesso'});
+                  res.status(200).json({message:'Acolito criado com Sucesso'});
                 }else{
                   res.status(500).json(err);
                 }
@@ -981,7 +981,7 @@ router.get("/select_coroinha",(req,res)=>{
       let query = ("update acolitos set nome=? where id=?");
       connection.query(query,[body.nome,id],(err,results)=>{
         if(!err){
-          return res.status(200).json({message:'acolito atualizado com sucesso!!!'});
+          return res.status(200).json({message:'Acolito atualizado com Sucesso'});
         }else{
           res.status(500).json(err);
         }
@@ -998,7 +998,7 @@ router.get("/select_coroinha",(req,res)=>{
           if(results.affectedRows==0){
               res.status(404).json({message:'id não encontrado'});
           }
-          return res.status(200).json({message:'acolito deletado com sucesso !!!'});
+          return res.status(200).json({message:'Acolito deletado com Sucesso'});
       }else{
           res.status(500).json(err);
       }
