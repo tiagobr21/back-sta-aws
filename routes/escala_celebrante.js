@@ -10,6 +10,8 @@ let ejs = require('ejs');
 let uuid = require('uuid');
 const { resourceUsage } = require('process');
 
+//log 
+
 router.post('/gerarpdf',(req,res)=>{
 
   let escala_celebrante = req.body;
@@ -565,7 +567,7 @@ router.post('/gerarpdf',(req,res)=>{
 router.get('/getpdf',(req,res)=>{
   let pdf = req.body
   let query = 'select id,filename from pdf_escala_celebrante order by id DESC';
-  
+
   connection.query(query,[pdf],(err,results)=>{
     if(!err){
       res.status(200).json(results)
