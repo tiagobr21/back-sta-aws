@@ -3,7 +3,8 @@ var cors =require('cors');
 const connection = require('./connection');
 const userRoute = require('./routes/user');
 const coroinhaRoute = require('./routes/escala_coroinha');
-const ministroRoute = require('./routes/escala_ministro')
+const ministroRoute = require('./routes/escala_ministro');
+const celebranteRoute = require('./routes/escala_celebrante');
 const app = express();
 const path = require("path");
 
@@ -19,7 +20,9 @@ app.use(express.json());
 app.use('/user',userRoute);
 app.use('/escala_coroinha',coroinhaRoute);
 app.use('/escala_ministro',ministroRoute);
+app.use('/escala_celebrante',celebranteRoute);
 app.use('/files',express.static(path.resolve(__dirname,".","tmp","uploads")))
 app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escala-coroinha-pdf")))
 app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escala-ministro-pdf")))
+app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escala-celebrante-pdf")))
 module.exports = app;
