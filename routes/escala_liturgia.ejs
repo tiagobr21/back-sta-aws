@@ -65,8 +65,9 @@
                     <th scope="col">Hora</th>
                     <th scope="col">Dia</th>
                     <th scope="col">Local</th>
-                    <th scope="col">Acolitos</th> 
-                    <th scope="col">Coroinhas</th>
+                    <th scope="col">Comentaristas</th> 
+                    <th scope="col">Leitores</th>
+                    <th scope="col">Musicos</th>
                   </tr>
                 </thead>
            
@@ -81,18 +82,25 @@
 
                         <td>  
                          
-                          <%  JSON.parse(p1.acolito).forEach(acolito =>{ %>  
-                          <%= acolito.nome %> <br>
+                          <%  JSON.parse(p1.comentarista).forEach(comentarista =>{ %>  
+                          <%= comentarista.nome %> <br>
                           <% }) %>
           
                         </td> 
               
                         <td>  
-                            <%  JSON.parse(p1.coroinha).forEach(coroinha =>{ %>  
-                            <%= coroinha.nome %> <br>
+                            <%  JSON.parse(p1.leitores).forEach(leitor =>{ %>  
+                            <%= leitor.nome %> <br>
                             <% }) %>
               
                         </td> 
+
+                        <td>  
+                          <%  JSON.parse(p1.musicos).forEach(musico =>{ %>  
+                          <%= musico.nome %> <br>
+                          <% }) %>
+            
+                      </td>
             
                         
                 
@@ -125,8 +133,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -137,16 +146,25 @@
                       <td><%= p2.hora %></td>
                       <td><%= p2.dia %></td>
                       <td><%= p2.comunidade %></td>
+
                       <td>  
-                          <%   JSON.parse(p2.coroinha).forEach(coroinha =>{ %>  
-                          <%= coroinha.nome %> <br>
-                          <% }) %>
-                      </td> 
-                      <td>  
-                        <%  JSON.parse(p2.acolito).forEach(acolito =>{ %>  
-                        <%= acolito.nome %> <br>
+                        <%  JSON.parse(p2.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
                       </td> 
+                      
+                      <td>  
+                          <%   JSON.parse(p2.leitores).forEach(leitores =>{ %>  
+                          <%= leitores.nome %> <br>
+                          <% }) %>
+                      </td> 
+                
+                      <td>  
+                        <%  JSON.parse(p1.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+          
+                    </td>
                   </tr>
 
                   <% }) %>
@@ -175,8 +193,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -188,14 +207,22 @@
                       <td><%= p3.hora %></td>
                       <td><%= p3.dia %></td>
                       <td><%= p3.comunidade %></td>
-                      <td>  
-                        <%   JSON.parse(p3.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+
+                    <td>  
+                        <%  JSON.parse(p3.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
                     </td> 
+                    
                     <td>  
-                      <%  JSON.parse(p3.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
+                        <%   JSON.parse(p3.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                    </td> 
+
+                    <td>  
+                      <%  JSON.parse(p3.musicos).forEach(musicos =>{ %>  
+                      <%= musicos.nome %> <br>
                       <% }) %>
                     </td> 
                 
@@ -228,8 +255,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -241,16 +269,25 @@
                       <td><%= p4.hora %></td>
                       <td><%= p4.dia %></td>
                       <td><%= p4.comunidade %></td>
+                      
                       <td>  
-                        <%   JSON.parse(p4.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p4.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
                       </td> 
+
                       <td>  
-                        <%  JSON.parse(p4.acolito).forEach(acolito =>{ %>  
-                        <%= acolito.nome %> <br>
+                        <%   JSON.parse(p4.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
                         <% }) %>
                       </td> 
+
+                      <td>  
+                        <%   JSON.parse(p4.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
+                     
                   
                   </tr>
 
@@ -281,8 +318,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -295,15 +333,22 @@
                       <td><%= p5.dia %></td>
                       <td><%= p5.comunidade %></td>
                       <td>  
-                        <%   JSON.parse(p5.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p5.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
-                    </td> 
-                    <td>  
-                      <%  JSON.parse(p5.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
-                      <% }) %>
-                    </td> 
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p5.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%  JSON.parse(p5.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
                     
         
                   </tr>
@@ -335,8 +380,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -348,16 +394,25 @@
                       <td><%= p6.hora %></td>
                       <td><%= p6.dia %></td>
                       <td><%= p6.comunidade %></td>
+
                       <td>  
-                        <%   JSON.parse(p6.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p6.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
-                    </td> 
-                    <td>  
-                      <%  JSON.parse(p6.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
-                      <% }) %>
-                    </td> 
+                      </td> 
+                      
+                      <td>  
+                        <%   JSON.parse(p6.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p6.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
+                  
                     
         
                   </tr>
@@ -390,8 +445,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -404,15 +460,23 @@
                       <td><%= p7.dia %></td>
                       <td><%= p7.comunidade %></td>
                       <td>  
-                        <%   JSON.parse(p7.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p7.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
-                    </td> 
-                    <td>  
-                      <%  JSON.parse(p7.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
-                      <% }) %>
-                    </td> 
+                      </td> 
+                      
+                      <td>  
+                        <%   JSON.parse(p7.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p7.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
+                 
         
                   </tr>
 
@@ -443,8 +507,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -456,16 +521,25 @@
                       <td><%= p8.hora %></td>
                       <td><%= p8.dia %></td>
                       <td><%= p8.comunidade %></td>
+
                       <td>  
-                        <%   JSON.parse(p8.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p8.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
-                    </td> 
-                    <td>  
-                      <%  JSON.parse(p8.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
-                      <% }) %>
-                    </td> 
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p8.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p8.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
+                 
                     
         
                   </tr>
@@ -497,8 +571,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -510,16 +585,25 @@
                       <td><%= p9.hora %></td>
                       <td><%= p9.dia %></td>
                       <td><%= p9.comunidade %></td>
+
                       <td>  
-                        <%   JSON.parse(p9.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p9.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p9.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
                         <% }) %>
                     </td> 
+
                     <td>  
-                      <%  JSON.parse(p9.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
+                      <%   JSON.parse(p9.musicos).forEach(musicos =>{ %>  
+                      <%= musicos.nome %> <br>
                       <% }) %>
-                    </td> 
+                  </td> 
+              
                     
         
                   </tr>
@@ -551,8 +635,9 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Dia</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Acolitos</th>
-                  <th scope="col">Coroinhas</th>
+                  <th scope="col">Comentaristas</th>
+                  <th scope="col">Leitores</th>
+                  <th scope="col">Musicos</th>
                 </tr>
               </thead>
 
@@ -564,16 +649,24 @@
                       <td><%= p10.hora %></td>
                       <td><%= p10.dia %></td>
                       <td><%= p10.comunidade %></td>
+
                       <td>  
-                        <%   JSON.parse(p10.coroinha).forEach(coroinha =>{ %>  
-                        <%= coroinha.nome %> <br>
+                        <%  JSON.parse(p10.comentarista).forEach(comentarista =>{ %>  
+                        <%= comentarista.nome %> <br>
                         <% }) %>
-                    </td> 
-                    <td>  
-                      <%  JSON.parse(p10.acolito).forEach(acolito =>{ %>  
-                      <%= acolito.nome %> <br>
-                      <% }) %>
-                    </td> 
+                      </td> 
+                      
+                      <td>  
+                        <%   JSON.parse(p10.leitores).forEach(leitores =>{ %>  
+                        <%= leitores.nome %> <br>
+                        <% }) %>
+                      </td> 
+
+                      <td>  
+                        <%   JSON.parse(p10.musicos).forEach(musicos =>{ %>  
+                        <%= musicos.nome %> <br>
+                        <% }) %>
+                      </td> 
                     
         
                   </tr>
