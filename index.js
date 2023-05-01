@@ -6,6 +6,7 @@ const coroinhaRoute = require('./routes/escala_coroinha');
 const ministroRoute = require('./routes/escala_ministro');
 const celebranteRoute = require('./routes/escala_celebrante');
 const liturgiaRoute = require('./routes/escala_liturgia');
+const geralRoute = require('./routes/escala_geral');
 const app = express();
 const path = require("path");
 
@@ -23,6 +24,7 @@ app.use('/escala_coroinha',coroinhaRoute);
 app.use('/escala_ministro',ministroRoute);
 app.use('/escala_celebrante',celebranteRoute);
 app.use('/escala_liturgia',liturgiaRoute);
+app.use('/escala_geral',geralRoute);
 app.use('/files',express.static(path.resolve(__dirname,".","tmp","uploads")))
 app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escala-coroinha-pdf")))
 app.use('/pdfs',express.static(path.resolve(__dirname,".","pdfs","escala-ministro-pdf")))
